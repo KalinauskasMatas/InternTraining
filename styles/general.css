@@ -4,8 +4,14 @@
     --dark-text-color: #000000;
     --bright-text-color: #FFFFFF;
     --background-color: #D9D9D9;
+    --bright-background-color: #FFFFFF;
 }
 
 body {
     font-family: Inter, Arial;
+    background-color: var(--background-color);
+}
+
+.body-wrapper {
+    text-align: center;
 }
