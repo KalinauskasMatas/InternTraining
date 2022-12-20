@@ -16,6 +16,13 @@ body {
     text-align: center;
 }
 
+.header-name {
+    color: var(--bright-text-color);
+    transform: skew(-10deg);
+    font-size: 26px;
+    margin-bottom: 40px;
+}
+
 footer {
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);
