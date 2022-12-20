@@ -1,0 +1,22 @@
+.available-movies {
+    background-color: var(--bright-background-color);
+    border-radius: 20px;
+}
+
+.available-movies table {
+    border-spacing: 0 5px;
+}
+
+.available-movies tr:nth-child(n+2) {
+    background-color: var(--background-color);
+    margin-top: 10px;
+}
+
+.available-movies th, .available-movies td {
+    margin-bottom: 10px;
+}
+
+.available-movies td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}

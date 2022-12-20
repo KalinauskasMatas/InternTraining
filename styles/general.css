@@ -23,6 +23,19 @@ body {
     margin-bottom: 40px;
 }
 
+nav > ul {
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color);
+    text-align: start;
+    padding: 10px 10px;
+    border-radius: 15px;
+}
+
+nav > ul > li {
+    display: inline-block;
+    list-style: none;
+}
+
 footer {
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);
