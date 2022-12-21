@@ -9,13 +9,13 @@
     padding: 10px 0;
     font-weight: 400;
     letter-spacing: -1px;
-    margin-bottom: 15px;
+    margin-bottom: 23px;
 }
 
 .available-movies table {
     margin: 10px 25px 10px 25px;
-    padding-bottom: 100px;
-    border-spacing: 0 9px;
+    padding-bottom: 68px;
+    border-spacing: 0 10px;
 }
 
 .available-movies tr:nth-child(n+2) {
@@ -36,7 +36,12 @@
     border-bottom-left-radius: 18px;
 }
 
-.movie-rent {
+.inStock-image {
+    width: 20px;
+}
+
+.available-movies .movie-rent {
     background-color: var(--dark-button-color);
-    color: var(--bright-text-color)
+    color: var(--bright-text-color);
+    padding: 10px 30px;
 }
