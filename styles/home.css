@@ -24,10 +24,15 @@
 
 .available-movies th {
     padding: 0 23px;
+    text-align: left;
 }
 
 .available-movies td {
     padding: 8px 23px;
+}
+
+.available-movies td:not(.isInStock, .movie-rent) {
+    text-align: left;
 }
 
 
@@ -36,7 +41,7 @@
     border-bottom-left-radius: 18px;
 }
 
-.inStock-image {
+.isInStock img {
     width: 20px;
 }
 
