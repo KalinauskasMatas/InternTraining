@@ -1,0 +1,43 @@
+.your-movies {
+    background-color: var(--bright-background-color);
+    margin: 14px 40px 16px 40px;
+    border-radius: 20px;
+}
+
+.your-movies-header {
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 23px;
+}
+
+.your-movies table {
+    margin: 10px 25px 10px 25px;
+    padding-bottom: 45px;
+    border-spacing: 0 10px;
+}
+
+.your-movies tr:nth-child(n+2) {
+    background-color: var(--background-color);
+}
+
+.your-movies th {
+    padding: 0 23px;
+    text-align: left;
+}
+
+.your-movies td {
+    padding: 8px 23px;
+}
+
+.your-movies td:first-child {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+}
+
+.your-movies .remove-button {
+    background-color: var(--red-button-color);
+    color: var(--bright-text-color);
+    padding: 10px 17px;
+}
