@@ -13,9 +13,9 @@
 }
 
 .your-movies table {
-    margin: 10px 25px 10px 25px;
-    padding-bottom: 45px;
+    padding: 0px 25px 30px 25px;
     border-spacing: 0 10px;
+    width: 100%;
 }
 
 .your-movies tr:nth-child(n+2) {
@@ -27,17 +27,36 @@
     text-align: left;
 }
 
-.your-movies td {
-    padding: 8px 23px;
-}
-
 .your-movies td:first-child {
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
+}
+
+.your-movies .time-settings {
+    background-color: var(--bright-background-color);
+}
+
+.time-settings .time-control {
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color);
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+.time-settings .time-input {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .your-movies .remove-button {
     background-color: var(--red-button-color);
     color: var(--bright-text-color);
     padding: 10px 17px;
+    cursor: pointer;
+}
+
+.your-movies td:not(.remove-button), .your-movies th {
+    padding-left: 10px;
+    text-align: left;
 }
