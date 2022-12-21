@@ -20,14 +20,15 @@ body {
     color: var(--bright-text-color);
     transform: skew(-10deg);
     font-size: 26px;
-    margin-bottom: 40px;
+    margin-top: 24px;
+    margin-bottom: 33px;
 }
 
 nav > ul {
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);
     text-align: start;
-    margin: 16px 40px;
+    margin: 16px 40px 0px 40px;
     padding: 10px 10px;
     border-radius: 23px;
 }

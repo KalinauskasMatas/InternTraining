@@ -1,22 +1,42 @@
 .available-movies {
     background-color: var(--bright-background-color);
+    margin: 14px 40px 16px 40px;
     border-radius: 20px;
 }
 
+.available-movies-header {
+    margin: 0;
+    padding: 10px 0;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 15px;
+}
+
 .available-movies table {
-    border-spacing: 0 5px;
+    margin: 10px 25px 10px 25px;
+    padding-bottom: 100px;
+    border-spacing: 0 9px;
 }
 
 .available-movies tr:nth-child(n+2) {
     background-color: var(--background-color);
-    margin-top: 10px;
 }
 
-.available-movies th, .available-movies td {
-    margin-bottom: 10px;
+.available-movies th {
+    padding: 0 23px;
 }
+
+.available-movies td {
+    padding: 8px 23px;
+}
+
 
 .available-movies td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+}
+
+.movie-rent {
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color)
 }
