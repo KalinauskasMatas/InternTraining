@@ -1,19 +1,20 @@
 .your-movies {
     background-color: var(--bright-background-color);
-    margin: 14px 40px 16px 40px;
+    margin: 14px 47px 106px 43px;
+    padding-bottom: 20px;
     border-radius: 20px;
 }
 
 .your-movies-header {
     margin: 0;
-    padding: 10px 0;
+    padding: 16px 0 6px 0;
     font-weight: 400;
     letter-spacing: -1px;
     margin-bottom: 23px;
 }
 
 .your-movies table {
-    padding: 0px 25px 30px 25px;
+    padding: 0px 50px 30px 30px;
     border-spacing: 0 10px;
     width: 100%;
 }
@@ -27,9 +28,10 @@
     text-align: left;
 }
 
-.your-movies td:first-child {
+.your-movies table tr .movie-name {
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
+    padding-left: 17px;
 }
 
 .your-movies .time-settings {
@@ -52,7 +54,7 @@
 .your-movies .remove-button {
     background-color: var(--red-button-color);
     color: var(--bright-text-color);
-    padding: 10px 17px;
+    padding: 10px 8px;
     cursor: pointer;
 }
 

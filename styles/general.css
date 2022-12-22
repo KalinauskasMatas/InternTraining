@@ -21,7 +21,7 @@ body {
     transform: skew(-10deg);
     font-size: 27px;
     margin-top: 22px;
-    margin-bottom: 33px;
+    margin-bottom: 30px;
     padding-left: 6px;
     letter-spacing: 2px;
     word-spacing: -6px;
@@ -31,7 +31,7 @@ nav > ul {
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);
     text-align: start;
-    margin: 16px 47px 0px 43px;
+    margin: 10px 47px 0px 43px;
     padding: 9px 10px 10px 21px;
     border-radius: 25px;
 }
