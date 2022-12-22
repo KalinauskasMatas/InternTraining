@@ -23,12 +23,12 @@
 }
 
 .available-movies th {
-    padding: 0 23px;
+    padding: 0 17px;
     text-align: left;
 }
 
 .available-movies td {
-    padding: 8px 23px;
+    padding: 8px 17px;
 }
 
 .available-movies td:not(.isInStock, .movie-rent) {
@@ -39,6 +39,7 @@
 .available-movies td:first-child {
     border-top-left-radius: 18px;
     border-bottom-left-radius: 18px;
+    padding-left: 17px;
 }
 
 .isInStock img {
