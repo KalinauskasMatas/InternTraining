@@ -1,19 +1,19 @@
 .available-movies {
     background-color: var(--bright-background-color);
-    margin: 14px 40px 16px 40px;
+    margin: 14px 40px 106px 40px;
     border-radius: 20px;
 }
 
 .available-movies-header {
     margin: 0;
-    padding: 10px 0;
+    padding: 16px 0 6px 0;
     font-weight: 400;
     letter-spacing: -1px;
     margin-bottom: 23px;
 }
 
 .available-movies table {
-    margin: 10px 25px 10px 25px;
+    margin: 10px 25px 10px 30px;
     padding-bottom: 68px;
     border-spacing: 0 10px;
 }
