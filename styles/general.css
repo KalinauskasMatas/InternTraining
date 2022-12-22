@@ -61,6 +61,14 @@ nav .profile-link {
     margin-left: -11px;
 }
 
+nav a {
+    text-decoration: none;
+}
+
+nav a:visited {
+    color: var(--bright-text-color);
+}
+
 footer {
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);

@@ -59,6 +59,6 @@
 }
 
 .your-movies td:not(.remove-button), .your-movies th {
-    padding-left: 10px;
+    padding-left: 16px;
     text-align: left;
 }
