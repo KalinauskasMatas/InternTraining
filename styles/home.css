@@ -1,0 +1,54 @@
+.available-movies {
+    background-color: var(--bright-background-color);
+    margin: 14px 40px 106px 40px;
+    border-radius: 20px;
+}
+
+.available-movies-header {
+    margin: 0;
+    padding: 16px 0 6px 0;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 23px;
+}
+
+.available-movies table {
+    margin: 10px 25px 10px 30px;
+    padding-bottom: 68px;
+    border-spacing: 0 10px;
+}
+
+.available-movies tr:nth-child(n+2) {
+    background-color: var(--background-color);
+}
+
+.available-movies th {
+    padding: 0 17px;
+    text-align: left;
+}
+
+.available-movies td {
+    padding: 8px 17px;
+}
+
+.available-movies td:not(.isInStock, .movie-rent) {
+    text-align: left;
+}
+
+
+.available-movies td:first-child {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    padding-left: 17px;
+}
+
+.isInStock img {
+    width: 20px;
+}
+
+.available-movies .movie-rent {
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color);
+    padding: 10px 30px;
+    cursor: pointer;
+}
