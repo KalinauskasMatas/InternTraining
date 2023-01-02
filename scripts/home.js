@@ -45,7 +45,7 @@ const renderTable = (movieList, tableElement) => {
     <tr>
       <td>${curr.name}</td>
       <td>${curr.genre}</td>
-      <td>${curr.rentalPrice}</td>
+      <td>${curr.rentalPrice}$</td>
       ${curr.count > 0 ? 
         `<td class="isInStock"><img src="./assets/check.png" alt="Yes"></td>` :
         `<td class="isInStock"><img src="./assets/cross.png" alt="No"></td>`
