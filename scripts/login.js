@@ -7,7 +7,6 @@ const registerPasswordEl = document.getElementById('password-form');
 const registerPasswordRepeatEl = document.getElementById('password-repeat');
 const registerSubmitEl = document.querySelector('.register-form .form-button');
 const showRegisterEl = document.getElementById('show-register');
-const errorMessageEl = document.getElementById('error-message');
 
 const signIn = (e) => {
   if(loginEl.checkValidity()){

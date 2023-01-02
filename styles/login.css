@@ -43,10 +43,3 @@ form > input {
     border-radius: 15px;
     cursor: pointer;
 }
-
-#error-message {
-    color: red;
-    font-weight: 700;
-}
-
-
