@@ -7,7 +7,7 @@ const movie = (name, genre, rentalPrice, count) => {
   }
 }
 
-const movies = [
+const defaultMovies = [
   movie('The Godfather', 'Drama', 5.99, 3),
   movie('The Shawshank Redemption', 'Drama', 4.99, 5),
   movie('Schindler\'s List', 'Biography', 5.49, 2),
@@ -17,6 +17,9 @@ const movies = [
   movie('Gone with the Wind', 'Romance', 2.99, 0),
   movie('The Wizard of Oz', 'Adventure', 5.99, 2)
 ]
+
+const storage = localStorage.getItem("movies");
+const movies = storage ? JSON.parse(storage) : defaultMovies;
 
 const tableEl = document.getElementById('available-movies-table');
 
@@ -52,5 +55,6 @@ const rent = (element, movieList, tableElement) => {
   const movieIndex = movieList.findIndex((e) => e.name === movieName);
   if (movieList[movieIndex].count === 0) return;
   movieList[movieIndex].count--;
+  localStorage.setItem("movies", JSON.stringify(movieList));
   renderTable(movieList, tableElement)
 }
