@@ -10,6 +10,10 @@
     border-radius: 30px;
 }
 
+.register-form {
+    display: none;
+}
+
 .login-form > label,
 .register-form > label {
     margin: 15px 30px 3px 30px;
@@ -29,8 +33,7 @@ a {
     align-self: stretch;
 }
 
-.login-form .form-button,
-.register-form .form-button {
+.form-button {
     margin: 10px auto 12px auto;
     background-color: var(--dark-button-color);
     color: var(--bright-text-color);
