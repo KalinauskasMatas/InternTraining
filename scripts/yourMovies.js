@@ -88,7 +88,6 @@ const removeMovie = (movieElement, myMovieList, movieList, tableElement) => {
 
   const movieIndex = movieList.findIndex((e) => e.name === movieName);
   movieList[movieIndex].count += 1;
-  // console.log(movieList[movieIndex]);
 
   localStorage.setItem("movies", JSON.stringify(movieList));
   localStorage.setItem("myMovies", JSON.stringify(myMovieList));
