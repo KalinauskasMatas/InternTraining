@@ -18,8 +18,24 @@ const defaultMovies = [
   movie('The Wizard of Oz', 'Adventure', 5.99, 2)
 ]
 
-const storage = localStorage.getItem("movies");
-const movies = storage ? JSON.parse(storage) : defaultMovies;
+const myMovie = (name, genre, time, price) => {
+  return {
+    name: name,
+    genre: genre,
+    time: time,
+    price: price
+  }
+}
+
+const defaultMyMovies = []
+
+const storageMovies = localStorage.getItem("movies");
+const movies = storageMovies ? JSON.parse(storageMovies) : defaultMovies;
+
+const storageMyMovies = localStorage.getItem("myMovies");
+const myMovies = storageMyMovies ? JSON.parse(storageMyMovies) : defaultMyMovies;
+
+
 
 const tableEl = document.getElementById('available-movies-table');
 
@@ -34,7 +50,7 @@ const renderTable = (movieList, tableElement) => {
         `<td class="isInStock"><img src="./assets/check.png" alt="Yes"></td>` :
         `<td class="isInStock"><img src="./assets/cross.png" alt="No"></td>`
       }
-      <td class="movie-rent" onclick="rent(this, movies, tableEl)">Rent</td>
+      <td class="movie-rent" onclick="rent(this, movies, myMovies, tableEl)">Rent</td>
     </tr>
     `
   }, `
@@ -50,11 +66,16 @@ const renderTable = (movieList, tableElement) => {
 
 renderTable(movies, tableEl);
 
-const rent = (element, movieList, tableElement) => {
+const rent = (element, movieList, myMovieList, tableElement) => {
   const movieName = element.parentNode.children[0].textContent;
+  if (myMovieList.filter((movie) => movie.name === movieName).length > 0) return;
   const movieIndex = movieList.findIndex((e) => e.name === movieName);
-  if (movieList[movieIndex].count === 0) return;
-  movieList[movieIndex].count--;
+  const foundMovie = movieList[movieIndex];
+  if (foundMovie.count === 0) return;
+  foundMovie.count--;
+  myMovieList.push(myMovie(foundMovie.name, foundMovie.genre, 12, foundMovie.rentalPrice));
+
+  localStorage.setItem("myMovies", JSON.stringify(myMovieList));
   localStorage.setItem("movies", JSON.stringify(movieList));
   renderTable(movieList, tableElement)
 }
