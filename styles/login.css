@@ -44,4 +44,9 @@ form > input {
     cursor: pointer;
 }
 
+#error-message {
+    color: red;
+    font-weight: 700;
+}
+
 

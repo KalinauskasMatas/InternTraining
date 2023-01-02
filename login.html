@@ -26,19 +26,20 @@
         <article>
             <form class="register-form">
                 <label for="fname">Name</label>
-                <input type="text" id="fname" placeholder="name">
+                <input type="text" id="fname" placeholder="name" minlength="2" required>
                 <label for="surname">Surname</label>
-                <input type="text" id="surname" placeholder="surname">
+                <input type="text" id="surname" placeholder="surname" minlength="2">
                 <label for="email-form">Email</label>
-                <input type="email" id="email-form" placeholder="email">
+                <input type="email" id="email-form" placeholder="email" required>
                 <label for="email-repeat">Email agail</label>
-                <input type="email" id="email-repeat" placeholder="email">
+                <input type="email" id="email-repeat" placeholder="email" required>
                 <label for="password-form">Password</label>
-                <input type="password" id="password-form" placeholder="password">
+                <input type="password" id="password-form" placeholder="password" minlength="8" required>
                 <label for="password-repeat">Password again</label>
-                <input type="password" id="passsword-repeat" placeholder="password">
+                <input type="password" id="password-repeat" placeholder="password" minlength="8" required>
                 <input class="form-button" type="submit" value="Register">
             </form>
+            <p id="error-message"></p>
             <button class="form-button" id="show-register">Register</button>
         </article>
         <footer>
