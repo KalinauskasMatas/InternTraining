@@ -1,22 +1,8 @@
-const movie = (name, genre, rentalPrice, count) => {
-  return {
-    name: name,
-    genre: genre,
-    rentalPrice: rentalPrice,
-    count: count
-  }
+const fetchMovies = async (address) => {
+  const fetchPromise = fetch(address).then(res => res.json());
+  const data = await fetchPromise;
+  return data
 }
-
-const defaultMovies = [
-  movie('The Godfather', 'Drama', 5.99, 3),
-  movie('The Shawshank Redemption', 'Drama', 4.99, 5),
-  movie('Schindler\'s List', 'Biography', 5.49, 2),
-  movie('Raging Bull', 'Biography', 4.69, 1),
-  movie('Casablanca', 'Drama', 3.99, 2),
-  movie('Citizen Kane', 'Mystery', 4.99, 3),
-  movie('Gone with the Wind', 'Romance', 2.99, 0),
-  movie('The Wizard of Oz', 'Adventure', 5.99, 2)
-]
 
 const myMovie = (name, genre, time, price) => {
   return {
@@ -26,16 +12,6 @@ const myMovie = (name, genre, time, price) => {
     price: price
   }
 }
-
-const defaultMyMovies = []
-
-const storageMovies = localStorage.getItem("movies");
-const movies = storageMovies ? JSON.parse(storageMovies) : defaultMovies;
-
-const storageMyMovies = localStorage.getItem("myMovies");
-const myMovies = storageMyMovies ? JSON.parse(storageMyMovies) : defaultMyMovies;
-
-
 
 const tableEl = document.getElementById('available-movies-table');
 
@@ -50,7 +26,7 @@ const renderTable = (movieList, tableElement) => {
         `<td class="isInStock"><img src="./assets/check.png" alt="Yes"></td>` :
         `<td class="isInStock"><img src="./assets/cross.png" alt="No"></td>`
       }
-      <td class="movie-rent" onclick="rent(this, movies, myMovies, tableEl)">Rent</td>
+      <td class="movie-rent" onclick="rentMovie(this, movies, myMovies, tableEl)">Rent</td>
     </tr>
     `
   }, `
@@ -64,18 +40,39 @@ const renderTable = (movieList, tableElement) => {
   tableElement.innerHTML = tableList;
 }
 
-renderTable(movies, tableEl);
+let defaultMovies = [];
 
-const rent = (element, movieList, myMovieList, tableElement) => {
+let movies;
+let myMovies;
+
+(async function() {
+  try {
+    defaultMovies = await fetchMovies('./scripts/defaultData.json');
+    
+    const storageMovies = localStorage.getItem("movies");
+    movies = storageMovies ? JSON.parse(storageMovies) : defaultMovies;
+    
+    const storageMyMovies = localStorage.getItem("myMovies");
+    myMovies = storageMyMovies ? JSON.parse(storageMyMovies) : [];
+
+    renderTable(movies, tableEl);
+  } catch (error) {
+    console.error(error);
+  }  
+})();
+
+const rentMovie = (element, movieList, myMovieList, tableElement) => {
   const movieName = element.parentNode.children[0].textContent;
   if (myMovieList.filter((movie) => movie.name === movieName).length > 0) return;
+
   const movieIndex = movieList.findIndex((e) => e.name === movieName);
   const foundMovie = movieList[movieIndex];
   if (foundMovie.count === 0) return;
+
   foundMovie.count--;
   myMovieList.push(myMovie(foundMovie.name, foundMovie.genre, 12, foundMovie.rentalPrice));
 
   localStorage.setItem("myMovies", JSON.stringify(myMovieList));
   localStorage.setItem("movies", JSON.stringify(movieList));
-  renderTable(movieList, tableElement)
+  renderTable(movieList, tableElement);
 }
