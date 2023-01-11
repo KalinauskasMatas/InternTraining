@@ -1,14 +1,17 @@
+const logoutEl = document.getElementById("logout");
+
 const storageMovies = localStorage.getItem("movies");
 const movies = storageMovies ? JSON.parse(storageMovies) : [];
 
 const storageMyMovies = localStorage.getItem("myMovies");
 const myMovies = storageMyMovies ? JSON.parse(storageMyMovies) : [];
 
-const yourMoviesTableEl = document.getElementById('your-movies-table');
+const yourMoviesTableEl = document.getElementById("your-movies-table");
 
 const renderTable = (movieList, tableElement) => {
-  const tableList = movieList.reduce((prev, curr) => {
-    return `${prev}
+  const tableList = movieList.reduce(
+    (prev, curr) => {
+      return `${prev}
     <tr>
       <td class="movie-name">${curr.name}</td>
       <td>${curr.genre}</td>
@@ -22,22 +25,30 @@ const renderTable = (movieList, tableElement) => {
       <td>${curr.price}$</td>
       <td class="remove-button" onclick="removeMovie(this, myMovies, movies, yourMoviesTableEl)">Remove</td>
     </tr>
+    `;
+    },
     `
-  }, `
   <tr>
     <th>Name</th>
     <th>Genre</th>
     <th>Time</th>
     <th>Price</th>
   </tr>
-  `);
+  `
+  );
   tableElement.innerHTML = tableList;
-}
+};
 
 renderTable(myMovies, yourMoviesTableEl);
 
-const changeTime = (movieElement, isTimeIncrease, myMovieList, tableElement) => {
-  const movieName = movieElement.parentNode.parentNode.parentNode.children[0].textContent;
+const changeTime = (
+  movieElement,
+  isTimeIncrease,
+  myMovieList,
+  tableElement
+) => {
+  const movieName =
+    movieElement.parentNode.parentNode.parentNode.children[0].textContent;
   const movieIndex = myMovieList.findIndex((e) => e.name === movieName);
   if (isTimeIncrease) {
     if (myMovieList[movieIndex].time === 168) return;
@@ -48,7 +59,7 @@ const changeTime = (movieElement, isTimeIncrease, myMovieList, tableElement) => 
   }
   localStorage.setItem("myMovies", JSON.stringify(myMovieList));
   renderTable(myMovieList, tableElement);
-}
+};
 
 const removeMovie = (movieElement, myMovieList, movieList, tableElement) => {
   const movieName = movieElement.parentNode.children[0].textContent;
@@ -61,4 +72,11 @@ const removeMovie = (movieElement, myMovieList, movieList, tableElement) => {
   localStorage.setItem("movies", JSON.stringify(movieList));
   localStorage.setItem("myMovies", JSON.stringify(myMovieList));
   renderTable(myMovieList, tableElement);
-}
+};
+
+const logout = () => {
+  localStorage.removeItem("currentUser");
+  location.href = "./login.html";
+};
+
+logoutEl.addEventListener("click", logout);
