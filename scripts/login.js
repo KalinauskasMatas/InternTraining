@@ -1,4 +1,6 @@
 const loginEl = document.getElementsByClassName("login-form")[0];
+const loginEmailEl = document.querySelector(".login-form #email");
+const loginPasswordEl = document.querySelector(".login-form #password");
 const loginSubmitEl = document.querySelector(".login-form .form-button");
 const registerEl = document.getElementsByClassName("register-form")[0];
 const fNameEl = document.getElementById("fname");
@@ -15,10 +17,26 @@ const registeredUsers =
 const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 
 const signIn = (e) => {
-  if (loginEl.checkValidity()) {
-    e.preventDefault();
-    location.href = "./home.html";
-  }
+  loginEmailEl.setCustomValidity("");
+
+  const user = registeredUsers.filter(
+    (user) =>
+      user.email === loginEmailEl.value &&
+      user.password === loginPasswordEl.value
+  );
+
+  if (user.length !== 1)
+    loginEmailEl.setCustomValidity(
+      "User does not exist or password is incorrect"
+    );
+
+  if (!loginEl.checkValidity()) return;
+
+  e.preventDefault();
+
+  localStorage.setItem("currentUser", JSON.stringify(user));
+
+  location.href = "./home.html";
 };
 
 const register = (e) => {
