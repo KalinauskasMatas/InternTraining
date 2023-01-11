@@ -2,6 +2,7 @@ const loginEl = document.getElementsByClassName("login-form")[0];
 const loginEmailEl = document.querySelector(".login-form #email");
 const loginPasswordEl = document.querySelector(".login-form #password");
 const loginSubmitEl = document.querySelector(".login-form .form-button");
+
 const registerEl = document.getElementsByClassName("register-form")[0];
 const fNameEl = document.getElementById("fname");
 const surnameEl = document.getElementById("surname");
@@ -14,7 +15,7 @@ const showRegisterEl = document.getElementById("show-register");
 
 const registeredUsers =
   JSON.parse(localStorage.getItem("registeredUsers")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
 
 const signIn = (e) => {
   loginEmailEl.setCustomValidity("");
