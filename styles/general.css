@@ -50,10 +50,6 @@ nav > ul li {
     cursor: pointer;
 }
 
-nav > ul .right {
-    
-}
-
 #logout {
     text-align: end;
 }
