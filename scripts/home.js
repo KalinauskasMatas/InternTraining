@@ -1,6 +1,9 @@
 const tableEl = document.getElementById("available-movies-table");
 const logoutEl = document.getElementById("logout");
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"))?.[0] || {};
+if (Object.keys(currentUser).length === 0) location.href = "./login.html";
+
 const fetchMovies = async (address) => {
   const fetchPromise = fetch(address).then((res) => res.json());
   const data = await fetchPromise;

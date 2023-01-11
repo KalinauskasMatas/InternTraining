@@ -15,7 +15,8 @@ const showRegisterEl = document.getElementById("show-register");
 
 const registeredUsers =
   JSON.parse(localStorage.getItem("registeredUsers")) || [];
-const currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser"))?.[0] || {};
+if (Object.keys(currentUser).length > 0) location.href = "./home.html";
 
 const signIn = (e) => {
   loginEmailEl.setCustomValidity("");

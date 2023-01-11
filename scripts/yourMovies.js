@@ -1,10 +1,10 @@
 const logoutEl = document.getElementById("logout");
 
-const storageMovies = localStorage.getItem("movies");
-const movies = storageMovies ? JSON.parse(storageMovies) : [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser"))?.[0] || {};
+if (Object.keys(currentUser).length === 0) location.href = "./login.html";
 
-const storageMyMovies = localStorage.getItem("myMovies");
-const myMovies = storageMyMovies ? JSON.parse(storageMyMovies) : [];
+const movies = JSON.parse(localStorage.getItem("movies")) || [];
+const myMovies = JSON.parse(localStorage.getItem("myMovies")) || [];
 
 const yourMoviesTableEl = document.getElementById("your-movies-table");
 

@@ -4,6 +4,9 @@ const profileEmail = document.getElementById("profile-email");
 const resetEmailEl = document.getElementById("reset-email-button");
 const logoutEl = document.getElementById("logout");
 
+const currentUser = JSON.parse(localStorage.getItem("currentUser"))?.[0] || {};
+if (Object.keys(currentUser).length === 0) location.href = "./login.html";
+
 const fName = "John";
 const surname = "Newman";
 const email = "john.newman@mail.com";
