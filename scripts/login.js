@@ -12,6 +12,7 @@ const showRegisterEl = document.getElementById("show-register");
 
 const registeredUsers =
   JSON.parse(localStorage.getItem("registeredUsers")) || [];
+const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
 
 const signIn = (e) => {
   if (loginEl.checkValidity()) {
@@ -21,6 +22,7 @@ const signIn = (e) => {
 };
 
 const register = (e) => {
+  registerEmailEl.setCustomValidity("");
   registerEmailRepeatEl.setCustomValidity("");
   registerPasswordRepeatEl.setCustomValidity("");
 
@@ -29,6 +31,14 @@ const register = (e) => {
 
   if (registerPasswordEl.value !== registerPasswordRepeatEl.value)
     registerPasswordRepeatEl.setCustomValidity("The passwords do not match");
+
+  if (
+    registeredUsers.filter((user) => user.email === registerEmailEl.value)
+      .length > 0
+  )
+    registerEmailEl.setCustomValidity(
+      "Account registered with this email already exists"
+    );
 
   if (!registerEl.checkValidity()) return;
 
@@ -42,6 +52,12 @@ const register = (e) => {
   });
 
   localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+  localStorage.setItem(
+    "currentUser",
+    JSON.stringify(
+      registeredUsers.filter((user) => user.email === registerEmailEl.value)
+    )
+  );
 
   location.href = "./home.html";
 };
