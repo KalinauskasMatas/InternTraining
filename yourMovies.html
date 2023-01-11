@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/general.css">
-    <link rel="stylesheet" href="./styles/yourMovies.css">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/general.css" />
+    <link rel="stylesheet" href="./styles/yourMovies.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Inter"
+      rel="stylesheet"
+    />
     <title>Your Movies</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="body-wrapper">
-        <header>
-            <h1 class="header-name">Movie rental</h1>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="./home.html">Home</a></li>
-                <li><a href="./yourMovies.html">Your movies</a></li>
-                <li class="profile-link"><a href="./profile.html">Profile</a></li>
-            </ul>
-        </nav>
-        <section class="your-movies">
-            <h2 class="your-movies-header">Your movies</h2>
-            <table id="your-movies-table"></table>
-        </section>
-        <footer>
-            <span>Made by: Matas Kalinauskas</span><span>2023</span>
-        </footer>
+      <header>
+        <h1 class="header-name">Movie rental</h1>
+      </header>
+      <nav>
+        <ul>
+          <span class="left">
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="./yourMovies.html">Your movies</a></li>
+            <li class="profile-link"><a href="./profile.html">Profile</a></li>
+          </span>
+          <span>
+            <li id="logout">Logout</li>
+          </span>
+        </ul>
+      </nav>
+      <section class="your-movies">
+        <h2 class="your-movies-header">Your movies</h2>
+        <table id="your-movies-table"></table>
+      </section>
+      <footer><span>Made by: Matas Kalinauskas</span><span>2023</span></footer>
     </div>
     <script src="./scripts/yourMovies.js"></script>
-</body>
+  </body>
 </html>
