@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 const Login = () => {
   return (
     <div className="body-wrapper">
-      <Header />
+      <Header title={"Movie rental"} />
       <AuthForm />
       <AuthForm />
       <Footer />
