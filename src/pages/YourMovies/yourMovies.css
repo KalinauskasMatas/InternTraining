@@ -1,0 +1,64 @@
+.your-movies {
+    background-color: var(--bright-background-color);
+    margin: 14px 47px 106px 43px;
+    padding-bottom: 20px;
+    border-radius: 20px;
+}
+
+.your-movies-header {
+    margin: 0;
+    padding: 16px 0 6px 0;
+    font-weight: 400;
+    letter-spacing: -1px;
+    margin-bottom: 23px;
+}
+
+.your-movies table {
+    padding: 0px 50px 30px 30px;
+    border-spacing: 0 10px;
+    width: 100%;
+}
+
+.your-movies tr:nth-child(n+2) {
+    background-color: var(--background-color);
+}
+
+.your-movies th {
+    padding: 0 23px;
+    text-align: left;
+}
+
+.your-movies table tr .movie-name {
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+    padding-left: 17px;
+}
+
+.your-movies .time-settings {
+    background-color: var(--bright-background-color);
+}
+
+.time-settings .time-control {
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color);
+    padding: 0 4px;
+    cursor: pointer;
+}
+
+.time-settings .time-input {
+    padding: 0 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.your-movies .remove-button {
+    background-color: var(--red-button-color);
+    color: var(--bright-text-color);
+    padding: 10px 8px;
+    cursor: pointer;
+}
+
+.your-movies td:not(.remove-button), .your-movies th {
+    padding-left: 16px;
+    text-align: left;
+}
