@@ -1,0 +1,45 @@
+.login-form,
+.register-form {
+    background-color: var(--bright-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 250px;
+    margin: auto;
+    margin-bottom: 15px;
+    border-radius: 30px;
+}
+
+.register-form {
+    display: none;
+}
+
+.login-form > label,
+.register-form > label {
+    margin: 15px 30px 3px 30px;
+    font-size: 10px;
+}
+
+a {
+    margin: auto;
+}
+
+form > input,
+form > input {
+    margin: 0 30px 0 30px;
+    border: none;
+    background-color: var(--background-color);
+    padding: 5px 10px;
+    align-self: stretch;
+}
+
+.form-button {
+    width: 125px;
+    margin: 10px auto 12px auto;
+    background-color: var(--dark-button-color);
+    color: var(--bright-text-color);
+    border: none;
+    padding: 5px 35px;
+    border-radius: 15px;
+    cursor: pointer;
+}

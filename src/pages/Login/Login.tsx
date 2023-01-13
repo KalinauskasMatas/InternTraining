@@ -8,8 +8,8 @@ const Login = () => {
   return (
     <div className="body-wrapper">
       <Header title={"Movie rental"} />
-      <AuthForm />
-      <AuthForm />
+      <AuthForm isRegister={false} />
+      <AuthForm isRegister={true} />
       <Footer />
     </div>
   );
