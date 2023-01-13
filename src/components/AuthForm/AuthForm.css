@@ -10,9 +10,9 @@
     border-radius: 30px;
 }
 
-.register-form {
+/* .register-form {
     display: none;
-}
+} */
 
 .login-form > label,
 .register-form > label {
