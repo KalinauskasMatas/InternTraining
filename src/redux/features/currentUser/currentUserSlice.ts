@@ -2,12 +2,8 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 import { UserState } from "../../interfaces";
 
-const initialState: UserState = {
-  fname: "",
-  surname: "",
-  email: "",
-  password: "",
-};
+const initialState: UserState =
+  JSON.parse(localStorage.getItem("currUser") as string) || {};
 
 const currentUserSlice = createSlice({
   name: "currentUser",
@@ -18,6 +14,7 @@ const currentUserSlice = createSlice({
       state.surname = action.payload.surname;
       state.email = action.payload.email;
       state.password = action.payload.password;
+      localStorage.setItem("currUser", JSON.stringify(state));
     },
   },
 });

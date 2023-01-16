@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
 import { setUser } from "../../redux/features/currentUser/currentUserSlice";
+import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 import { AuthFormInterface } from "../../redux/interfaces";
 
 import "./AuthForm.css";
-import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 const AuthForm = (props: AuthFormInterface) => {
   const [showRegister, setShowRegister] = useState(false);
@@ -25,9 +25,9 @@ const AuthForm = (props: AuthFormInterface) => {
     passwordRepeat: "",
   });
 
-  // const currUser = useAppSelector((state) => state.currentUser);
+  const currUser = useAppSelector((state) => state.currentUser);
   const registeredUsers = useAppSelector((state) => state.registeredUsers);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const revealRegister = () => {
     setShowRegister(!showRegister);
@@ -35,27 +35,60 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // dispatch(
-    //   setUser({
-    //     fname: "mac",
-    //     surname: "kal",
-    //     email: "mac@kal",
-    //     password: "123",
-    //   })
-    // );
-    console.log(registeredUsers);
+    const matchUser = registeredUsers.filter(
+      (user) =>
+        user.email === loginData.email && user.password === loginData.password
+    );
+    if (matchUser.length !== 1) {
+      console.log("User with this email or password does not exist");
+      return;
+    }
+    dispatch(
+      setUser({
+        fname: matchUser[0].fname,
+        surname: matchUser[0].surname,
+        email: matchUser[0].email,
+        password: matchUser[0].password,
+      })
+    );
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    // dispatch(
-    //   registerUser({
-    //     fname: "user",
-    //     surname: "sur",
-    //     email: "em",
-    //     password: "123",
-    //   })
-    // );
+    const { fname, surname, email, emailRepeat, password, passwordRepeat } =
+      registerData;
+    if (email !== emailRepeat) {
+      console.log("email mismatch");
+      return;
+    }
+
+    if (password !== passwordRepeat) {
+      console.log("password mismatch");
+      return;
+    }
+
+    if (registeredUsers.filter((user) => user.email === email).length > 0) {
+      console.log("this email is already used");
+      return;
+    }
+
+    dispatch(
+      registerUser({
+        fname,
+        surname,
+        email,
+        password,
+      })
+    );
+
+    dispatch(
+      setUser({
+        fname,
+        surname,
+        email,
+        password,
+      })
+    );
     console.log(registeredUsers);
   };
 
