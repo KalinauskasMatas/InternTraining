@@ -19,7 +19,6 @@ const currentUserSlice = createSlice({
     clearUser: (state) => {
       localStorage.removeItem("currUser");
       state = { ...initialState };
-      console.log(state);
     },
   },
 });

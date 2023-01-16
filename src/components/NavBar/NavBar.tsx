@@ -1,4 +1,3 @@
-import React from "react";
 import { clearUser } from "../../redux/features/currentUser/currentUserSlice";
 import { useAppDispatch } from "../../redux/hooks";
 
