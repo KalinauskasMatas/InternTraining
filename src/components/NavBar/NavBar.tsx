@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import { clearUser } from "../../redux/features/currentUser/currentUserSlice";
 import { useAppDispatch } from "../../redux/hooks";
 
@@ -15,9 +17,15 @@ const NavBar = () => {
     <nav>
       <ul>
         <span className="left">
-          <li>Home</li>
-          <li>Your movies</li>
-          <li className="profile-link">Profile</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/yourMovies">Your movies</Link>
+          </li>
+          <li className="profile-link">
+            <Link to="/profile">Profile</Link>
+          </li>
         </span>
         <span>
           <li id="logout" onClick={handleLogout}>
