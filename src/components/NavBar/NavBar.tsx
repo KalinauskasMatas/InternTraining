@@ -1,8 +1,17 @@
 import React from "react";
+import { clearUser } from "../../redux/features/currentUser/currentUserSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 import "./NavBar.css";
 
 const NavBar = () => {
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    window.location.reload();
+  };
+
   return (
     <nav>
       <ul>
@@ -12,7 +21,9 @@ const NavBar = () => {
           <li className="profile-link">Profile</li>
         </span>
         <span>
-          <li id="logout">Logout</li>
+          <li id="logout" onClick={handleLogout}>
+            Logout
+          </li>
         </span>
       </ul>
     </nav>

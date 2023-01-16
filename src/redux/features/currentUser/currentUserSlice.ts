@@ -16,10 +16,15 @@ const currentUserSlice = createSlice({
       state.password = action.payload.password;
       localStorage.setItem("currUser", JSON.stringify(state));
     },
+    clearUser: (state) => {
+      localStorage.removeItem("currUser");
+      state = { ...initialState };
+      console.log(state);
+    },
   },
 });
 
-export const { setUser } = currentUserSlice.actions;
+export const { setUser, clearUser } = currentUserSlice.actions;
 
 export const selectCurrUser = (state: RootState) => state.currentUser;
 
