@@ -25,6 +25,11 @@ const AuthForm = (props: AuthFormInterface) => {
     passwordRepeat: "",
   });
 
+  const [userNotExist, setUserNotExist] = useState(false);
+  const [emailMismatch, setEmailMismatch] = useState(false);
+  const [passwordMismatch, setPasswordMismatch] = useState(false);
+  const [duplicateEmail, setDuplicateEmail] = useState(false);
+
   const currUser = useAppSelector((state) => state.currentUser);
   const registeredUsers = useAppSelector((state) => state.registeredUsers);
   const dispatch = useAppDispatch();
@@ -35,14 +40,20 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    // setUserNotExist(false);
+
     const matchUser = registeredUsers.filter(
       (user) =>
         user.email === loginData.email && user.password === loginData.password
     );
+
     if (matchUser.length !== 1) {
-      console.log("User with this email or password does not exist");
+      setUserNotExist(true);
+      console.log(userNotExist);
+
       return;
     }
+
     dispatch(
       setUser({
         fname: matchUser[0].fname,
@@ -55,20 +66,26 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
+
+    setEmailMismatch(false);
+    setPasswordMismatch(false);
+    setDuplicateEmail(false);
+
     const { fname, surname, email, emailRepeat, password, passwordRepeat } =
       registerData;
+
     if (email !== emailRepeat) {
-      console.log("email mismatch");
+      setEmailMismatch(true);
       return;
     }
 
     if (password !== passwordRepeat) {
-      console.log("password mismatch");
+      setPasswordMismatch(true);
       return;
     }
 
     if (registeredUsers.filter((user) => user.email === email).length > 0) {
-      console.log("this email is already used");
+      setDuplicateEmail(true);
       return;
     }
 
@@ -123,6 +140,12 @@ const AuthForm = (props: AuthFormInterface) => {
             id="password"
             placeholder="password"
             onChange={handleChange}
+            ref={(c) => {
+              c?.setAttribute(
+                "setCustomValidity",
+                userNotExist ? "Username or password is incorrect" : ""
+              );
+            }}
             required
           />
           <input className="form-button" type="submit" value="Sign in" />

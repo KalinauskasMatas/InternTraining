@@ -18,44 +18,5 @@ body {
   margin: auto;
 }
 
-nav > ul {
-  background-color: var(--dark-button-color);
-  color: var(--bright-text-color);
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 47px 0px 43px;
-  padding: 9px 10px 10px 21px;
-  border-radius: 25px;
-}
 
-nav > ul li {
-  display: inline-block;
-  list-style: none;
-  font-size: 16px;
-  font-weight: 700;
-  padding: 6px 8px 6px 8px;
-  margin: 0 12px 0 0;
-  letter-spacing: 0.2px;
-  cursor: pointer;
-}
-
-#logout {
-  text-align: end;
-}
-
-nav > ul .left li:first-child{
-  font-size: 20px;
-}
-
-nav .profile-link {
-  margin-left: -11px;
-}
-
-nav a {
-  text-decoration: none;
-}
-
-nav a:visited {
-  color: var(--bright-text-color);
-}
 
