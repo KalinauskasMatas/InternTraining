@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
-import { AuthFormInterface } from "../../interfaces";
+import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+
+import { setUser } from "../../redux/features/currentUser/currentUserSlice";
+
+import { AuthFormInterface } from "../../redux/interfaces";
 
 import "./AuthForm.css";
+import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 const AuthForm = (props: AuthFormInterface) => {
   const [showRegister, setShowRegister] = useState(false);
@@ -20,18 +25,38 @@ const AuthForm = (props: AuthFormInterface) => {
     passwordRepeat: "",
   });
 
+  // const currUser = useAppSelector((state) => state.currentUser);
+  const registeredUsers = useAppSelector((state) => state.registeredUsers);
+  // const dispatch = useAppDispatch();
+
   const revealRegister = () => {
     setShowRegister(!showRegister);
   };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(loginData);
+    // dispatch(
+    //   setUser({
+    //     fname: "mac",
+    //     surname: "kal",
+    //     email: "mac@kal",
+    //     password: "123",
+    //   })
+    // );
+    console.log(registeredUsers);
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(registerData);
+    // dispatch(
+    //   registerUser({
+    //     fname: "user",
+    //     surname: "sur",
+    //     email: "em",
+    //     password: "123",
+    //   })
+    // );
+    console.log(registeredUsers);
   };
 
   const handleChange = (e: React.ChangeEvent<any>) => {
