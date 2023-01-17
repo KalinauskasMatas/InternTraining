@@ -12,3 +12,10 @@ export interface UserState {
   email: string;
   password: string;
 }
+
+export interface MovieInterface {
+  name: string;
+  genre: string;
+  rentalPrice: number;
+  stock: number;
+}
