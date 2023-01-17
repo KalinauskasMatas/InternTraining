@@ -3,48 +3,48 @@
     "name": "The Godfather",
     "genre": "Drama",
     "rentalPrice": 5.99,
-    "count": 3
+    "stock": 3
   },
   {
     "name": "The Shawshank Redemption",
     "genre": "Drama",
     "rentalPrice": 4.99,
-    "count": 5
+    "stock": 5
   },
   {
     "name": "Raging Bull",
     "genre": "Biography",
     "rentalPrice": 4.69,
-    "count": 1
+    "stock": 1
   },
   {
     "name": "Schindler's List",
     "genre": "Biography",
     "rentalPrice": 5.49,
-    "count": 2
+    "stock": 2
   },
   {
     "name": "Casablanca",
     "genre": "Drama",
     "rentalPrice": 3.99,
-    "count": 2
+    "stock": 2
   },
   {
     "name": "Citizen Kane",
     "genre": "Mystery",
     "rentalPrice": 4.99,
-    "count": 3
+    "stock": 3
   },
   {
     "name": "Gone with the Wind",
     "genre": "Romance",
     "rentalPrice": 2.99,
-    "count": 0
+    "stock": 0
   },
   {
     "name": "The Wizard of Oz",
     "genre": "Adventure",
     "rentalPrice": 5.99,
-    "count": 2
+    "stock": 2
   }
 ]

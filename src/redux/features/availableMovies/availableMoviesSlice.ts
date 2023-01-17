@@ -23,12 +23,15 @@ const availableMoviesSlice = createSlice({
   initialState,
   reducers: {
     rentMovie: (state, action: PayloadAction<string>) => {
+      console.log(state.values());
+
       const movieIndex = state.findIndex(
         (movie: MovieInterface) => movie.name === action.payload
       );
       if (movieIndex === -1) return;
       if (state[movieIndex].stock < 1) return;
       state[movieIndex].stock--;
+      localStorage.setItem("availableMovies", JSON.stringify(state));
     },
   },
 });
