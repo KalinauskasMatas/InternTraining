@@ -15,14 +15,25 @@ const registeredUsersSlice = createSlice({
         surname: action.payload.surname,
         email: action.payload.email,
         password: action.payload.password,
+        rentMovies: action.payload.rentMovies,
       });
+
+      localStorage.setItem("registeredUsers", JSON.stringify(state));
+    },
+
+    updateUser: (state, action: PayloadAction<UserState>) => {
+      const userIndex = state.findIndex(
+        (user) => user.email === action.payload.email
+      );
+      if (userIndex === -1) return;
+      state[userIndex] = { ...action.payload };
 
       localStorage.setItem("registeredUsers", JSON.stringify(state));
     },
   },
 });
 
-export const { registerUser } = registeredUsersSlice.actions;
+export const { registerUser, updateUser } = registeredUsersSlice.actions;
 
 export const selectRegisteredUsers = (state: RootState) =>
   state.registeredUsers;

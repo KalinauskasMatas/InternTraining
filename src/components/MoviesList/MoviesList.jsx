@@ -6,13 +6,28 @@ import "./MoviesList.css";
 
 import checkIcon from "./assets/check.png";
 import crossIcon from "./assets/cross.png";
+import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
+import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 const MoviesList = () => {
+  const currentUser = useAppSelector((state) => state.currentUser);
   const availableMovies = useAppSelector((state) => state.availableMovies);
   const dispatch = useAppDispatch();
 
   const rent = (movieName) => {
+    const isMovieRented =
+      currentUser.rentMovies.filter((movie) => movie === movieName).length > 0;
+    if (isMovieRented) return;
     dispatch(rentMovie(movieName));
+    dispatch(
+      updateCurrUser({ rentMovies: [...currentUser.rentMovies, movieName] })
+    );
+    dispatch(
+      updateUser({
+        ...currentUser,
+        rentMovies: [...currentUser.rentMovies, movieName],
+      })
+    );
   };
 
   return (
@@ -30,7 +45,7 @@ const MoviesList = () => {
             <tr key={movie.name}>
               <td>{movie.name}</td>
               <td>{movie.genre}</td>
-              <td>{movie.rentalPrice}</td>
+              <td>{movie.rentalPrice}$</td>
               <td className="isInStock">
                 {movie.stock > 0 ? (
                   <img src={checkIcon} alt="Yes" />

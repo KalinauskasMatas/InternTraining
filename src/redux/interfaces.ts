@@ -11,6 +11,7 @@ export interface UserState {
   surname: string;
   email: string;
   password: string;
+  rentMovies: RentMovieInterface[];
 }
 
 export interface MovieInterface {
@@ -18,4 +19,11 @@ export interface MovieInterface {
   genre: string;
   rentalPrice: number;
   stock: number;
+}
+
+export interface RentMovieInterface {
+  name: string;
+  genre: string;
+  time: number;
+  price: number;
 }

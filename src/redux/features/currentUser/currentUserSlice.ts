@@ -10,10 +10,12 @@ const currentUserSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
-      state.fname = action.payload.fname;
-      state.surname = action.payload.surname;
-      state.email = action.payload.email;
-      state.password = action.payload.password;
+      Object.assign(state, action.payload);
+      localStorage.setItem("currUser", JSON.stringify(state));
+    },
+    updateCurrUser: (state, action: PayloadAction<UserState>) => {
+      Object.assign(state, action.payload);
+
       localStorage.setItem("currUser", JSON.stringify(state));
     },
     clearUser: (state) => {
@@ -23,7 +25,7 @@ const currentUserSlice = createSlice({
   },
 });
 
-export const { setUser, clearUser } = currentUserSlice.actions;
+export const { setUser, updateCurrUser, clearUser } = currentUserSlice.actions;
 
 export const selectCurrUser = (state: RootState) => state.currentUser;
 
