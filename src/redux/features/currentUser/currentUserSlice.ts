@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
-import { UserState } from "../../interfaces";
+import { UserState } from "../../../interfaces";
 
 const initialState: UserState =
   JSON.parse(localStorage.getItem("currUser") as string) || {};

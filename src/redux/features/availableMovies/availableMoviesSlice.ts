@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // import axios from "axios";
 
-import { MovieInterface } from "../../interfaces";
+import { MovieInterface } from "../../../interfaces";
 import { RootState } from "../../store";
 
 import defaultData from "../../../defaultData.json";

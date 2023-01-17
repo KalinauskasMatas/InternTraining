@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/currentUser/currentUserSlice";
 import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
-import { AuthFormInterface } from "../../redux/interfaces";
+import { AuthFormInterface } from "../../interfaces";
 
 import "./AuthForm.css";
 
