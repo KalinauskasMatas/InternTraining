@@ -30,10 +30,28 @@ const registeredUsersSlice = createSlice({
 
       localStorage.setItem("registeredUsers", JSON.stringify(state));
     },
+
+    usersSetEmail: (
+      state,
+      action: PayloadAction<{ user: UserState; newEmail: string }>
+    ) => {
+      const userIndex = state.findIndex(
+        (user) => user.email === action.payload.user.email
+      );
+
+      if (userIndex === -1) return;
+      state[userIndex] = {
+        ...state[userIndex],
+        email: action.payload.newEmail,
+      };
+
+      localStorage.setItem("registeredUsers", JSON.stringify(state));
+    },
   },
 });
 
-export const { registerUser, updateUser } = registeredUsersSlice.actions;
+export const { registerUser, updateUser, usersSetEmail } =
+  registeredUsersSlice.actions;
 
 export const selectRegisteredUsers = (state: RootState) =>
   state.registeredUsers;

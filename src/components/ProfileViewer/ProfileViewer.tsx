@@ -2,9 +2,25 @@ import { UserState } from "../../interfaces";
 
 import "./ProfileViewer.css";
 import defaultIcon from "./assets/default-icon.png";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
+import { usersSetEmail } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 const ProfileViewer = (props: { profile: UserState }) => {
+  const dispatch = useAppDispatch();
+  const currProfile = useAppSelector((state) => state.currentUser);
   const profile = props.profile;
+
+  const handleChangeEmail = () => {
+    const newEmail = prompt("Enter new email");
+    if (!newEmail || !newEmail.includes(`@`)) return;
+
+    if (profile.email === currProfile.email) {
+      dispatch(updateCurrUser({ ...profile, email: newEmail }));
+    }
+
+    dispatch(usersSetEmail({ user: profile, newEmail }));
+  };
 
   return (
     <section className="profile">
@@ -28,7 +44,7 @@ const ProfileViewer = (props: { profile: UserState }) => {
         </div>
         <div className="profile-buttons">
           <button>Reset password</button>
-          <button>Reset email</button>
+          <button onClick={handleChangeEmail}>Reset email</button>
         </div>
       </div>
     </section>
