@@ -23,8 +23,6 @@ const MoviesList = () => {
       (movie) => movie.name === movieName
     )[0];
 
-    console.log(foundMovie);
-
     const newRentMovie = {
       name: movieName,
       genre: foundMovie.genre,

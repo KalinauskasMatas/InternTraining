@@ -1,20 +1,22 @@
-import { RentMovieInterface } from "../../interfaces";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+
 import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
 import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { returnMovie } from "../../redux/features/availableMovies/availableMoviesSlice";
+
+import { RentMovieInterface } from "../../interfaces";
 import "./RentedMoviesList.css";
 
 const RentedMoviesList = () => {
   const currentUser = useAppSelector((state) => state.currentUser);
   const dispatch = useAppDispatch();
 
-  const changeTime = (movie: RentMovieInterface, changeTime: string) => {
+  const handleChangeTime = (movie: RentMovieInterface, changeTime: string) => {
     const movieIndex = currentUser.rentMovies.findIndex(
       (movies) => movies.name === movie.name
     );
 
     const newRentList = JSON.parse(JSON.stringify(currentUser.rentMovies));
-    console.log(newRentList[movieIndex]);
 
     if (changeTime === "decrease") {
       if (movie.time === 12) return;
@@ -26,6 +28,20 @@ const RentedMoviesList = () => {
 
     dispatch(updateCurrUser({ ...currentUser, rentMovies: [...newRentList] }));
     dispatch(updateUser({ ...currentUser, rentMovies: [...newRentList] }));
+  };
+
+  const handleRemove = (movie: RentMovieInterface) => {
+    const movieIndex = currentUser.rentMovies.findIndex(
+      (movies) => movies.name === movie.name
+    );
+    const newMovieArray = JSON.parse(JSON.stringify(currentUser.rentMovies));
+    newMovieArray.splice(movieIndex, 1);
+
+    dispatch(returnMovie(movie.name));
+    dispatch(
+      updateCurrUser({ ...currentUser, rentMovies: [...newMovieArray] })
+    );
+    dispatch(updateUser({ ...currentUser, rentMovies: [...newMovieArray] }));
   };
 
   return (
@@ -48,21 +64,26 @@ const RentedMoviesList = () => {
                   <span className="time-settings">
                     <span
                       className="time-control"
-                      onClick={() => changeTime(movie, "decrease")}
+                      onClick={() => handleChangeTime(movie, "decrease")}
                     >
                       &#60;
                     </span>
                     <span className="time-input">{movie.time}h</span>
                     <span
                       className="time-control"
-                      onClick={() => changeTime(movie, "increase")}
+                      onClick={() => handleChangeTime(movie, "increase")}
                     >
                       &#62;
                     </span>
                   </span>
                 </td>
                 <td>{movie.price}$</td>
-                <td className="remove-button">Remove</td>
+                <td
+                  className="remove-button"
+                  onClick={() => handleRemove(movie)}
+                >
+                  Remove
+                </td>
               </tr>
             ))}
           </tbody>

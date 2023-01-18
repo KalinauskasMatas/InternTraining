@@ -35,6 +35,7 @@ const availableMoviesSlice = createSlice({
       const movieIndex = state.findIndex(
         (movie: MovieInterface) => movie.name === action.payload
       );
+
       if (movieIndex === -1) return;
       state[movieIndex].stock++;
       localStorage.setItem("availableMovies", JSON.stringify(state));
