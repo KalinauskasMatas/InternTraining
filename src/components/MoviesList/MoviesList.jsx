@@ -16,7 +16,8 @@ const MoviesList = () => {
 
   const rent = (movieName) => {
     const isMovieRented =
-      currentUser.rentMovies.filter((movie) => movie === movieName).length > 0;
+      currentUser.rentMovies.filter((movie) => movie.name === movieName)
+        .length > 0;
     if (isMovieRented) return;
 
     const foundMovie = availableMovies.filter(
