@@ -1,0 +1,16 @@
+.userselect-wrapper {
+  background-color: var(--bright-background-color);
+  margin: 14px 47px -30px 43px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 20px 20px 0px 0px;
+}
+
+#user-select {
+  width: 300px;
+  padding: 10px 20px;
+}
+
+#user-select option {
+  height: 100px;
+}
