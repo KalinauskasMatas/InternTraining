@@ -18,14 +18,32 @@ const MoviesList = () => {
     const isMovieRented =
       currentUser.rentMovies.filter((movie) => movie === movieName).length > 0;
     if (isMovieRented) return;
+
+    const foundMovie = availableMovies.filter(
+      (movie) => movie.name === movieName
+    )[0];
+
+    console.log(foundMovie);
+
+    const newRentMovie = {
+      name: movieName,
+      genre: foundMovie.genre,
+      time: 12,
+      price: foundMovie.rentalPrice,
+    };
+
     dispatch(rentMovie(movieName));
+
     dispatch(
-      updateCurrUser({ rentMovies: [...currentUser.rentMovies, movieName] })
+      updateCurrUser({
+        rentMovies: [...currentUser.rentMovies, newRentMovie],
+      })
     );
+
     dispatch(
       updateUser({
         ...currentUser,
-        rentMovies: [...currentUser.rentMovies, movieName],
+        rentMovies: [...currentUser.rentMovies, newRentMovie],
       })
     );
   };
