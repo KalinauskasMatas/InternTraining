@@ -4,7 +4,10 @@ import "./ProfileViewer.css";
 import defaultIcon from "./assets/default-icon.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import { usersSetEmail } from "../../redux/features/registeredUsers/registeredUsersSlice";
+import {
+  updateUser,
+  usersSetEmail,
+} from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 const ProfileViewer = (props: { profile: UserState }) => {
   const dispatch = useAppDispatch();
@@ -13,13 +16,30 @@ const ProfileViewer = (props: { profile: UserState }) => {
 
   const handleChangeEmail = () => {
     const newEmail = prompt("Enter new email");
-    if (!newEmail || !newEmail.includes(`@`)) return;
+    if (!newEmail || !newEmail.includes(`@`)) {
+      alert("Enter correct email address");
+      return;
+    }
 
     if (profile.email === currProfile.email) {
       dispatch(updateCurrUser({ ...profile, email: newEmail }));
     }
 
     dispatch(usersSetEmail({ user: profile, newEmail }));
+  };
+
+  const handleResetPassword = () => {
+    const newPassword = prompt("Enter new password");
+    if (!newPassword || newPassword.length < 8) {
+      alert("Password must be at least 8 characters length");
+      return;
+    }
+
+    if (profile.email === currProfile.email) {
+      dispatch(updateCurrUser({ ...profile, password: newPassword }));
+    }
+
+    dispatch(updateUser({ ...profile, password: newPassword }));
   };
 
   return (
@@ -43,7 +63,7 @@ const ProfileViewer = (props: { profile: UserState }) => {
           </div>
         </div>
         <div className="profile-buttons">
-          <button>Reset password</button>
+          <button onClick={handleResetPassword}>Reset password</button>
           <button onClick={handleChangeEmail}>Reset email</button>
         </div>
       </div>
