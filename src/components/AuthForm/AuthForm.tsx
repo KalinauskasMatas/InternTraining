@@ -60,6 +60,7 @@ const AuthForm = (props: AuthFormInterface) => {
         surname: matchUser[0].surname,
         email: matchUser[0].email,
         password: matchUser[0].password,
+        isAdmin: matchUser[0].isAdmin,
         rentMovies: matchUser[0].rentMovies,
       })
     );
@@ -96,6 +97,7 @@ const AuthForm = (props: AuthFormInterface) => {
         surname,
         email,
         password,
+        isAdmin: false,
         rentMovies: [],
       })
     );
@@ -106,6 +108,7 @@ const AuthForm = (props: AuthFormInterface) => {
         surname,
         email,
         password,
+        isAdmin: false,
         rentMovies: [],
       })
     );

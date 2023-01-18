@@ -11,6 +11,7 @@ export interface UserState {
   surname: string;
   email: string;
   password: string;
+  isAdmin: boolean;
   rentMovies: RentMovieInterface[];
 }
 

@@ -15,6 +15,7 @@ const registeredUsersSlice = createSlice({
         surname: action.payload.surname,
         email: action.payload.email,
         password: action.payload.password,
+        isAdmin: false,
         rentMovies: action.payload.rentMovies,
       });
 
