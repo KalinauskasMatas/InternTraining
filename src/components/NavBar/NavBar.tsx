@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
 import { clearUser } from "../../redux/features/currentUser/currentUserSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import "./NavBar.css";
 
 const NavBar = () => {
+  const currentUser = useAppSelector((state) => state.currentUser);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -28,6 +29,11 @@ const NavBar = () => {
           </li>
         </span>
         <span>
+          {currentUser.isAdmin && (
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          )}
           <li id="logout" onClick={handleLogout}>
             Logout
           </li>

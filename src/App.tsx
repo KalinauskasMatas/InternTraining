@@ -7,6 +7,7 @@ import YourMovies from "./pages/YourMovies/YourMovies";
 import Profile from "./pages/Profile/Profile";
 
 import "./App.css";
+import Users from "./pages/Users/Users";
 
 function App() {
   const currentUser = useAppSelector((state) => state.currentUser);
@@ -21,6 +22,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/yourMovies" element={<YourMovies />} />
             <Route path="/profile" element={<Profile />} />
+            {currentUser.isAdmin && <Route path="/users" element={<Users />} />}
           </Routes>
         </BrowserRouter>
       )}
