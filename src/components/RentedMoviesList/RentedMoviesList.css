@@ -28,8 +28,12 @@
   text-align: left;
 }
 
+.your-movies th:not(th:first-child){
+  width: 100px;
+}
+
 .your-movies th:first-child {
-  width: 325px;
+  width: 450px;
 }
 
 .your-movies table tr .movie-name {
