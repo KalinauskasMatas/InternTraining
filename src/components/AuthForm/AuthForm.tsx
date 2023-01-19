@@ -11,6 +11,9 @@ import "./AuthForm.css";
 
 const AuthForm = (props: AuthFormInterface) => {
   const [showRegister, setShowRegister] = useState(false);
+  const [loginError, setLoginError] = useState("");
+  const [registerError, setRegisterErrror] = useState("");
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -25,12 +28,6 @@ const AuthForm = (props: AuthFormInterface) => {
     passwordRepeat: "",
   });
 
-  const [userNotExist, setUserNotExist] = useState(false);
-  const [emailMismatch, setEmailMismatch] = useState(false);
-  const [passwordMismatch, setPasswordMismatch] = useState(false);
-  const [duplicateEmail, setDuplicateEmail] = useState(false);
-
-  const currUser = useAppSelector((state) => state.currentUser);
   const registeredUsers = useAppSelector((state) => state.registeredUsers);
   const dispatch = useAppDispatch();
 
@@ -40,7 +37,7 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    // setUserNotExist(false);
+    setLoginError("");
 
     const matchUser = registeredUsers.filter(
       (user) =>
@@ -48,9 +45,7 @@ const AuthForm = (props: AuthFormInterface) => {
     );
 
     if (matchUser.length !== 1) {
-      setUserNotExist(true);
-      console.log(userNotExist);
-
+      setLoginError("Invalid username or password");
       return;
     }
 
@@ -68,26 +63,23 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-
-    setEmailMismatch(false);
-    setPasswordMismatch(false);
-    setDuplicateEmail(false);
+    setRegisterErrror("");
 
     const { fname, surname, email, emailRepeat, password, passwordRepeat } =
       registerData;
 
     if (email !== emailRepeat) {
-      setEmailMismatch(true);
+      setRegisterErrror("The emails entered do not match");
       return;
     }
 
     if (password !== passwordRepeat) {
-      setPasswordMismatch(true);
+      setRegisterErrror("The passwords entered do not match");
       return;
     }
 
     if (registeredUsers.filter((user) => user.email === email).length > 0) {
-      setDuplicateEmail(true);
+      setRegisterErrror("User with this email already exists");
       return;
     }
 
@@ -145,15 +137,10 @@ const AuthForm = (props: AuthFormInterface) => {
             id="password"
             placeholder="password"
             onChange={handleChange}
-            ref={(c) => {
-              c?.setAttribute(
-                "setCustomValidity",
-                userNotExist ? "Username or password is incorrect" : ""
-              );
-            }}
             required
           />
           <input className="form-button" type="submit" value="Sign in" />
+          <p className="error">{loginError}</p>
         </form>
       </article>
     );
@@ -214,6 +201,7 @@ const AuthForm = (props: AuthFormInterface) => {
             required
           />
           <input className="form-button" type="submit" value="Register"></input>
+          <p className="error">{registerError}</p>
         </form>
       ) : (
         <button className="form-button" onClick={revealRegister}>
