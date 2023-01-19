@@ -28,9 +28,14 @@
   text-align: left;
 }
 
+.your-movies th:first-child {
+  width: 325px;
+}
+
 .your-movies table tr .movie-name {
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
+  width: 350px;
   padding-left: 17px;
 }
 
@@ -59,6 +64,7 @@
 }
 
 .your-movies td:not(.remove-button), .your-movies th {
+  width: 90px;
   padding-left: 16px;
   text-align: left;
 }

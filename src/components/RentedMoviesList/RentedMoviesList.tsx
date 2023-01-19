@@ -55,6 +55,7 @@ const RentedMoviesList = () => {
               <th>Genre</th>
               <th>Time</th>
               <th>Price</th>
+              <th></th>
             </tr>
             {currentUser.rentMovies.map((movie) => (
               <tr key={movie.name}>

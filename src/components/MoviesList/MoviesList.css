@@ -33,6 +33,7 @@
 }
 
 .available-movies td:not(.isInStock, .movie-rent) {
+  width: 100px;
   text-align: left;
 }
 
@@ -40,6 +41,7 @@
 .available-movies td:first-child {
   border-top-left-radius: 18px;
   border-bottom-left-radius: 18px;
+  width: 350px;
   padding-left: 17px;
 }
 
