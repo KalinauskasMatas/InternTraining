@@ -88,8 +88,8 @@ const AuthForm = (props: AuthFormInterface) => {
     dispatch(setCurrUser(newUser));
   };
 
-  const handleChange = (e: React.ChangeEvent<any>) => {
-    if (e.target.parentNode.className.includes("login"))
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.parentElement?.className.includes("login"))
       setLoginData({
         ...loginData,
         [e.target.id]: e.target.value,
