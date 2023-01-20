@@ -1,5 +1,4 @@
-.login-form,
-.register-form {
+.auth-form {
     background-color: var(--bright-background-color);
     display: flex;
     flex-direction: column;
@@ -10,8 +9,7 @@
     border-radius: 30px;
 }
 
-.login-form > label,
-.register-form > label {
+.auth-form > label {
     margin: 15px 30px 3px 30px;
     font-size: 10px;
 }
@@ -20,7 +18,6 @@ a {
     margin: auto;
 }
 
-form > input,
 form > input {
     margin: 0 30px 0 30px;
     border: none;

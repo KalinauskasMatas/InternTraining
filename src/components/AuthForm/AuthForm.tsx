@@ -90,53 +90,34 @@ const AuthForm = (props: AuthFormInterface) => {
     });
   };
 
-  if (!props.isRegister) {
-    return (
-      <article>
-        <form className="login-form" onSubmit={handleLogin}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="email"
-            onChange={handleChange}
-            required
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            onChange={handleChange}
-            required
-          />
-          <input className="form-button" type="submit" value="Sign in" />
-          <p className="error">{loginError}</p>
-        </form>
-      </article>
-    );
-  }
   return (
     <article>
-      {showRegister ? (
-        <form className="register-form" onSubmit={handleRegister}>
-          <label htmlFor="fname">Name</label>
-          <input
-            type="text"
-            id="fname"
-            placeholder="name"
-            minLength={2}
-            onChange={handleChange}
-            required
-          ></input>
-          <label htmlFor="surname">Surname</label>
-          <input
-            type="text"
-            id="surname"
-            placeholder="surname"
-            minLength={2}
-            onChange={handleChange}
-          />
+      {!props.isRegister || showRegister ? (
+        <form
+          className="auth-form"
+          onSubmit={props.isRegister ? handleRegister : handleLogin}
+        >
+          {props.isRegister && (
+            <>
+              <label htmlFor="fname">Name</label>
+              <input
+                type="text"
+                id="fname"
+                placeholder="name"
+                minLength={2}
+                onChange={handleChange}
+                required
+              ></input>
+              <label htmlFor="surname">Surname</label>
+              <input
+                type="text"
+                id="surname"
+                placeholder="surname"
+                minLength={2}
+                onChange={handleChange}
+              />
+            </>
+          )}
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -145,34 +126,47 @@ const AuthForm = (props: AuthFormInterface) => {
             onChange={handleChange}
             required
           />
-          <label htmlFor="email-repeat">Email agail</label>
-          <input
-            type="email"
-            id="emailRepeat"
-            placeholder="email"
-            onChange={handleChange}
-            required
-          />
+          {props.isRegister && (
+            <>
+              <label htmlFor="email-repeat">Email again</label>
+              <input
+                type="email"
+                id="emailRepeat"
+                placeholder="email"
+                onChange={handleChange}
+                required
+              />
+            </>
+          )}
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
             placeholder="password"
-            minLength={8}
             onChange={handleChange}
             required
           />
-          <label htmlFor="passwordRepeat">Password again</label>
+          {props.isRegister && (
+            <>
+              <label htmlFor="passwordRepeat">Password again</label>
+              <input
+                type="password"
+                id="passwordRepeat"
+                placeholder="password"
+                minLength={8}
+                onChange={handleChange}
+                required
+              />
+            </>
+          )}
           <input
-            type="password"
-            id="passwordRepeat"
-            placeholder="password"
-            minLength={8}
-            onChange={handleChange}
-            required
+            className="form-button"
+            type="submit"
+            value={props.isRegister ? "Register" : "Sign In"}
           />
-          <input className="form-button" type="submit" value="Register"></input>
-          <p className="error">{registerError}</p>
+          <p className="error">
+            {props.isRegister ? registerError : loginError}
+          </p>
         </form>
       ) : (
         <button className="form-button" onClick={revealRegister}>
