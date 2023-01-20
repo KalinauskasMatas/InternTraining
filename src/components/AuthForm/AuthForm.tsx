@@ -69,32 +69,23 @@ const AuthForm = (props: AuthFormInterface) => {
       return;
     }
 
-    if (registeredUsers.filter((user) => user.email === email).length > 0) {
+    if (registeredUsers.find((user) => user.email === email)) {
       setRegisterErrror("User with this email already exists");
       return;
     }
 
-    dispatch(
-      registerUser({
-        fname,
-        surname,
-        email,
-        password,
-        isAdmin: false,
-        rentMovies: [],
-      })
-    );
+    const newUser = {
+      fname,
+      surname,
+      email,
+      password,
+      isAdmin: false,
+      rentMovies: [],
+    };
 
-    dispatch(
-      setCurrUser({
-        fname,
-        surname,
-        email,
-        password,
-        isAdmin: false,
-        rentMovies: [],
-      })
-    );
+    dispatch(registerUser(newUser));
+
+    dispatch(setCurrUser(newUser));
   };
 
   const handleChange = (e: React.ChangeEvent<any>) => {
