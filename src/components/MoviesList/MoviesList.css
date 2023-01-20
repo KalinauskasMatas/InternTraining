@@ -55,3 +55,8 @@
   padding: 10px 30px;
   cursor: pointer;
 }
+
+.available-movies .disabled-button {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: not-allowed; 
+}

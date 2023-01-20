@@ -1,13 +1,14 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { Tooltip } from "react-tooltip";
 
 import { rentMovie } from "../../redux/features/availableMovies/availableMoviesSlice";
-
-import "./MoviesList.css";
+import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
+import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 import checkIcon from "./assets/check.png";
 import crossIcon from "./assets/cross.png";
-import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
+
+import "./MoviesList.css";
 
 const MoviesList = () => {
   const currentUser = useAppSelector((state) => state.currentUser);
@@ -20,9 +21,9 @@ const MoviesList = () => {
         .length > 0;
     if (isMovieRented) return;
 
-    const foundMovie = availableMovies.filter(
+    const foundMovie = availableMovies.find(
       (movie) => movie.name === movieName
-    )[0];
+    );
 
     const newRentMovie = {
       name: movieName,
@@ -70,9 +71,39 @@ const MoviesList = () => {
                   <img src={crossIcon} alt="No" />
                 )}
               </td>
-              <td className="movie-rent" onClick={() => rent(movie.name)}>
-                Rent
-              </td>
+              {currentUser.rentMovies.find(
+                (movies) => movies.name === movie.name
+              ) ? (
+                <>
+                  <td
+                    className="movie-rent disabled-button"
+                    id={"rented" + movie.name}
+                  >
+                    Rent
+                    <Tooltip
+                      anchorId={"rented" + movie.name}
+                      style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
+                      content="You have already rented this movie"
+                    />
+                  </td>
+                </>
+              ) : movie.stock < 1 ? (
+                <td
+                  className="movie-rent disabled-button"
+                  id={"no-stock" + movie.name}
+                >
+                  Rent
+                  <Tooltip
+                    anchorId={"no-stock" + movie.name}
+                    style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
+                    content="There is no stock left"
+                  />
+                </td>
+              ) : (
+                <td className="movie-rent" onClick={() => rent(movie.name)}>
+                  Rent
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
