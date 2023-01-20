@@ -25,6 +25,8 @@ const AuthForm = (props: AuthFormInterface) => {
   const registeredUsers = useAppSelector((state) => state.registeredUsers);
   const dispatch = useAppDispatch();
 
+  const { isRegister } = props;
+
   const revealRegister = () => {
     setShowRegister(!showRegister);
   };
@@ -91,12 +93,12 @@ const AuthForm = (props: AuthFormInterface) => {
 
   return (
     <article>
-      {!props.isRegister || showRegister ? (
+      {!isRegister || showRegister ? (
         <form
           className="auth-form"
-          onSubmit={props.isRegister ? handleRegister : handleLogin}
+          onSubmit={isRegister ? handleRegister : handleLogin}
         >
-          {props.isRegister && (
+          {isRegister && (
             <>
               <label htmlFor="fname">Name</label>
               <input
@@ -125,7 +127,7 @@ const AuthForm = (props: AuthFormInterface) => {
             onChange={handleChange}
             required
           />
-          {props.isRegister && (
+          {isRegister && (
             <>
               <label htmlFor="email-repeat">Email again</label>
               <input
@@ -145,7 +147,7 @@ const AuthForm = (props: AuthFormInterface) => {
             onChange={handleChange}
             required
           />
-          {props.isRegister && (
+          {isRegister && (
             <>
               <label htmlFor="passwordRepeat">Password again</label>
               <input
@@ -161,7 +163,7 @@ const AuthForm = (props: AuthFormInterface) => {
           <input
             className="form-button"
             type="submit"
-            value={props.isRegister ? "Register" : "Sign In"}
+            value={isRegister ? "Register" : "Sign In"}
           />
           <p className="error">{formError}</p>
         </form>
