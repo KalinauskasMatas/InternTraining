@@ -11,8 +11,7 @@ import "./AuthForm.css";
 
 const AuthForm = (props: AuthFormInterface) => {
   const [showRegister, setShowRegister] = useState(false);
-  const [loginError, setLoginError] = useState("");
-  const [registerError, setRegisterErrror] = useState("");
+  const [formError, setFormError] = useState("");
 
   const [inputData, setInputData] = useState({
     fname: "",
@@ -32,7 +31,7 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    setLoginError("");
+    setFormError("");
 
     const matchUser = registeredUsers.find(
       (user) =>
@@ -40,7 +39,7 @@ const AuthForm = (props: AuthFormInterface) => {
     );
 
     if (!matchUser) {
-      setLoginError("Invalid username or password");
+      setFormError("Invalid username or password");
       return;
     }
 
@@ -49,23 +48,23 @@ const AuthForm = (props: AuthFormInterface) => {
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    setRegisterErrror("");
+    setFormError("");
 
     const { fname, surname, email, emailRepeat, password, passwordRepeat } =
       inputData;
 
     if (email !== emailRepeat) {
-      setRegisterErrror("The emails entered do not match");
+      setFormError("The emails entered do not match");
       return;
     }
 
     if (password !== passwordRepeat) {
-      setRegisterErrror("The passwords entered do not match");
+      setFormError("The passwords entered do not match");
       return;
     }
 
     if (registeredUsers.find((user) => user.email === email)) {
-      setRegisterErrror("User with this email already exists");
+      setFormError("User with this email already exists");
       return;
     }
 
@@ -164,9 +163,7 @@ const AuthForm = (props: AuthFormInterface) => {
             type="submit"
             value={props.isRegister ? "Register" : "Sign In"}
           />
-          <p className="error">
-            {props.isRegister ? registerError : loginError}
-          </p>
+          <p className="error">{formError}</p>
         </form>
       ) : (
         <button className="form-button" onClick={revealRegister}>
