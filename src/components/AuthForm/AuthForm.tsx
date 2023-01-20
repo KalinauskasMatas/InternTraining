@@ -14,12 +14,7 @@ const AuthForm = (props: AuthFormInterface) => {
   const [loginError, setLoginError] = useState("");
   const [registerError, setRegisterErrror] = useState("");
 
-  const [loginData, setLoginData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [registerData, setRegisterData] = useState({
+  const [inputData, setInputData] = useState({
     fname: "",
     surname: "",
     email: "",
@@ -41,7 +36,7 @@ const AuthForm = (props: AuthFormInterface) => {
 
     const matchUser = registeredUsers.find(
       (user) =>
-        user.email === loginData.email && user.password === loginData.password
+        user.email === inputData.email && user.password === inputData.password
     );
 
     if (!matchUser) {
@@ -57,7 +52,7 @@ const AuthForm = (props: AuthFormInterface) => {
     setRegisterErrror("");
 
     const { fname, surname, email, emailRepeat, password, passwordRepeat } =
-      registerData;
+      inputData;
 
     if (email !== emailRepeat) {
       setRegisterErrror("The emails entered do not match");
@@ -89,16 +84,10 @@ const AuthForm = (props: AuthFormInterface) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.parentElement?.className.includes("login"))
-      setLoginData({
-        ...loginData,
-        [e.target.id]: e.target.value,
-      });
-    else
-      setRegisterData({
-        ...registerData,
-        [e.target.id]: e.target.value,
-      });
+    setInputData({
+      ...inputData,
+      [e.target.id]: e.target.value,
+    });
   };
 
   if (!props.isRegister) {
