@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 
-import { setUser } from "../../redux/features/currentUser/currentUserSlice";
+import { setCurrUser } from "../../redux/features/currentUser/currentUserSlice";
 import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 import { AuthFormInterface } from "../../interfaces";
@@ -39,26 +39,17 @@ const AuthForm = (props: AuthFormInterface) => {
     e.preventDefault();
     setLoginError("");
 
-    const matchUser = registeredUsers.filter(
+    const matchUser = registeredUsers.find(
       (user) =>
         user.email === loginData.email && user.password === loginData.password
     );
 
-    if (matchUser.length !== 1) {
+    if (!matchUser) {
       setLoginError("Invalid username or password");
       return;
     }
 
-    dispatch(
-      setUser({
-        fname: matchUser[0].fname,
-        surname: matchUser[0].surname,
-        email: matchUser[0].email,
-        password: matchUser[0].password,
-        isAdmin: matchUser[0].isAdmin,
-        rentMovies: matchUser[0].rentMovies,
-      })
-    );
+    dispatch(setCurrUser(matchUser));
   };
 
   const handleRegister = (e: React.FormEvent) => {
@@ -95,7 +86,7 @@ const AuthForm = (props: AuthFormInterface) => {
     );
 
     dispatch(
-      setUser({
+      setCurrUser({
         fname,
         surname,
         email,

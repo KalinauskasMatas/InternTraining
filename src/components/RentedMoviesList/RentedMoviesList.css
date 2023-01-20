@@ -28,7 +28,7 @@
   text-align: left;
 }
 
-.your-movies th:not(th:first-child){
+.your-movies th{
   width: 100px;
 }
 

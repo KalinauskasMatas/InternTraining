@@ -9,7 +9,7 @@ const currentUserSlice = createSlice({
   name: "currentUser",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<UserState>) => {
+    setCurrUser: (state, action: PayloadAction<UserState>) => {
       Object.assign(state, action.payload);
       localStorage.setItem("currUser", JSON.stringify(state));
     },
@@ -25,7 +25,8 @@ const currentUserSlice = createSlice({
   },
 });
 
-export const { setUser, updateCurrUser, clearUser } = currentUserSlice.actions;
+export const { setCurrUser, updateCurrUser, clearUser } =
+  currentUserSlice.actions;
 
 export const selectCurrUser = (state: RootState) => state.currentUser;
 
