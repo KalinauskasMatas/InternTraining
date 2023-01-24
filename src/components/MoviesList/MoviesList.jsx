@@ -59,7 +59,7 @@ const MoviesList = () => {
             <th>Price for 12h</th>
             <th>Is in stock</th>
           </tr>
-          {availableMovies.map((movie) => (
+          {availableMovies?.map((movie) => (
             <tr key={movie.name}>
               <td>{movie.name}</td>
               <td>{movie.genre}</td>

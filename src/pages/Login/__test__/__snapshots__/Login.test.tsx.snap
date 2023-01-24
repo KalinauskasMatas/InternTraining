@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches with snapshot 1`] = `
+<div
+  className="body-wrapper"
+>
+  <header
+    className="header-name"
+    data-testid="header-title"
+  >
+    Movie rental
+  </header>
+  <article>
+    <form
+      className="auth-form"
+      onSubmit={[Function]}
+    >
+      <label
+        htmlFor="email"
+      >
+        Email
+      </label>
+      <input
+        id="email"
+        onChange={[Function]}
+        placeholder="email"
+        required={true}
+        type="email"
+      />
+      <label
+        htmlFor="password"
+      >
+        Password
+      </label>
+      <input
+        id="password"
+        onChange={[Function]}
+        placeholder="password"
+        required={true}
+        type="password"
+      />
+      <input
+        className="form-button"
+        type="submit"
+        value="Sign In"
+      />
+      <p
+        className="error"
+      />
+    </form>
+  </article>
+  <article>
+    <button
+      className="form-button"
+      onClick={[Function]}
+    >
+      Register
+    </button>
+  </article>
+  <footer>
+    <span>
+      Made by: Matas Kalinauskas
+    </span>
+    <span>
+      2023
+    </span>
+  </footer>
+</div>
+`;

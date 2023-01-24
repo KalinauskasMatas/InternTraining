@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches with snapshot 1`] = `
+<div
+  className="body-wrapper"
+>
+  <header
+    className="header-name"
+    data-testid="header-title"
+  >
+    Movie rental
+  </header>
+  <nav>
+    <ul>
+      <span
+        className="left"
+      >
+        <li>
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/yourMovies"
+            onClick={[Function]}
+          >
+            Your movies
+          </a>
+        </li>
+        <li
+          className="profile-link"
+        >
+          <a
+            href="/profile"
+            onClick={[Function]}
+          >
+            Profile
+          </a>
+        </li>
+      </span>
+      <span>
+        <li
+          id="logout"
+          onClick={[Function]}
+        >
+          Logout
+        </li>
+      </span>
+    </ul>
+  </nav>
+  <section
+    className="profile"
+  >
+    <h2
+      className="profile-header"
+    >
+      Profile
+    </h2>
+    <div
+      className="profile-content"
+    >
+      <div
+        className="profile-info"
+      >
+        <div
+          className="profile-picture"
+        >
+          <img
+            alt="Default profile icon"
+            src="default-icon.png"
+          />
+        </div>
+        <div
+          className="profile-text"
+        >
+          <p
+            data-testid="profile-name"
+          >
+            <b>
+              Name:
+            </b>
+             
+          </p>
+          <p
+            data-testid="profile-surname"
+          >
+            <b>
+              Surname:
+            </b>
+             
+          </p>
+          <p
+            data-testid="profile-email"
+          >
+            <b>
+              Email:
+            </b>
+             
+          </p>
+        </div>
+      </div>
+      <div
+        className="profile-buttons"
+      >
+        <button
+          onClick={[Function]}
+        >
+          Reset password
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Reset email
+        </button>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <span>
+      Made by: Matas Kalinauskas
+    </span>
+    <span>
+      2023
+    </span>
+  </footer>
+</div>
+`;

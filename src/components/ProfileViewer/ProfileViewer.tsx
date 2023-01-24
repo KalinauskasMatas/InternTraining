@@ -52,13 +52,13 @@ const ProfileViewer = (props: { profile: UserState }) => {
           </div>
           <div className="profile-text">
             <p data-testid="profile-name">
-              <b>Name:</b> {profile.fname}
+              <b>Name:</b> {profile?.fname}
             </p>
             <p data-testid="profile-surname">
-              <b>Surname:</b> {profile.surname}
+              <b>Surname:</b> {profile?.surname}
             </p>
             <p data-testid="profile-email">
-              <b>Email:</b> {profile.email}
+              <b>Email:</b> {profile?.email}
             </p>
           </div>
         </div>

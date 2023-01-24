@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches with snapshot 1`] = `
+<div
+  className="body-wrapper"
+>
+  <header
+    className="header-name"
+    data-testid="header-title"
+  >
+    Movie rental
+  </header>
+  <nav>
+    <ul>
+      <span
+        className="left"
+      >
+        <li>
+          <a
+            href="/"
+            onClick={[Function]}
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            href="/yourMovies"
+            onClick={[Function]}
+          >
+            Your movies
+          </a>
+        </li>
+        <li
+          className="profile-link"
+        >
+          <a
+            href="/profile"
+            onClick={[Function]}
+          >
+            Profile
+          </a>
+        </li>
+      </span>
+      <span>
+        <li
+          id="logout"
+          onClick={[Function]}
+        >
+          Logout
+        </li>
+      </span>
+    </ul>
+  </nav>
+  <div
+    className="body-wrapper"
+  >
+    <section
+      className="your-movies"
+    >
+      <h2
+        className="your-movies-header"
+      >
+        Your movies
+      </h2>
+      <table
+        id="your-movies-table"
+      >
+        <tbody>
+          <tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Genre
+            </th>
+            <th>
+              Time
+            </th>
+            <th>
+              Price
+            </th>
+            <th />
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <footer>
+    <span>
+      Made by: Matas Kalinauskas
+    </span>
+    <span>
+      2023
+    </span>
+  </footer>
+</div>
+`;
