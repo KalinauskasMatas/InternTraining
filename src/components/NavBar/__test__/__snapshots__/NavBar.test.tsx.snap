@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot admin 1`] = `
+<nav>
+  <ul>
+    <span
+      className="left"
+    >
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/yourMovies"
+          onClick={[Function]}
+        >
+          Your movies
+        </a>
+      </li>
+      <li
+        className="profile-link"
+      >
+        <a
+          href="/profile"
+          onClick={[Function]}
+        >
+          Profile
+        </a>
+      </li>
+    </span>
+    <span>
+      <li>
+        <a
+          href="/users"
+          onClick={[Function]}
+        >
+          Users
+        </a>
+      </li>
+      <li
+        id="logout"
+        onClick={[Function]}
+      >
+        Logout
+      </li>
+    </span>
+  </ul>
+</nav>
+`;
+
+exports[`matches snapshot non admin 1`] = `
+<nav>
+  <ul>
+    <span
+      className="left"
+    >
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}
+        >
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/yourMovies"
+          onClick={[Function]}
+        >
+          Your movies
+        </a>
+      </li>
+      <li
+        className="profile-link"
+      >
+        <a
+          href="/profile"
+          onClick={[Function]}
+        >
+          Profile
+        </a>
+      </li>
+    </span>
+    <span>
+      <li
+        id="logout"
+        onClick={[Function]}
+      >
+        Logout
+      </li>
+    </span>
+  </ul>
+</nav>
+`;

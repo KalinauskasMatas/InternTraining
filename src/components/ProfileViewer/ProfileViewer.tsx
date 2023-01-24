@@ -51,13 +51,13 @@ const ProfileViewer = (props: { profile: UserState }) => {
             <img src={defaultIcon} alt="Default profile icon" />
           </div>
           <div className="profile-text">
-            <p>
+            <p data-testid="profile-name">
               <b>Name:</b> {profile.fname}
             </p>
-            <p>
+            <p data-testid="profile-surname">
               <b>Surname:</b> {profile.surname}
             </p>
-            <p>
+            <p data-testid="profile-email">
               <b>Email:</b> {profile.email}
             </p>
           </div>

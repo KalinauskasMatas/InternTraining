@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<footer>
+  <span>
+    Made by: Matas Kalinauskas
+  </span>
+  <span>
+    2023
+  </span>
+</footer>
+`;

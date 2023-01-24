@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<section
+  className="available-movies"
+>
+  <h2
+    className="available-movies-header"
+  >
+    Available Movies
+  </h2>
+  <table
+    id="available-movies-table"
+  >
+    <tbody>
+      <tr>
+        <th>
+          Name
+        </th>
+        <th>
+          Genre
+        </th>
+        <th>
+          Price for 12h
+        </th>
+        <th>
+          Is in stock
+        </th>
+      </tr>
+      <tr>
+        <td>
+          The Godfather
+        </td>
+        <td>
+          Drama
+        </td>
+        <td>
+          5.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          The Shawshank Redemption
+        </td>
+        <td>
+          Drama
+        </td>
+        <td>
+          4.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Raging Bull
+        </td>
+        <td>
+          Biography
+        </td>
+        <td>
+          4.69
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Schindler's List
+        </td>
+        <td>
+          Biography
+        </td>
+        <td>
+          5.49
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Casablanca
+        </td>
+        <td>
+          Drama
+        </td>
+        <td>
+          3.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Citizen Kane
+        </td>
+        <td>
+          Mystery
+        </td>
+        <td>
+          4.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gone with the Wind
+        </td>
+        <td>
+          Romance
+        </td>
+        <td>
+          2.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="No"
+            src="cross.png"
+          />
+        </td>
+        <td
+          className="movie-rent disabled-button"
+          id="no-stockGone with the Wind"
+        >
+          Rent
+          <div
+            className="react-tooltip styles-module_tooltip__mnnfp styles-module_dark__xNqje"
+            role="tooltip"
+            style={
+              Object {
+                "backgroundColor": "rgba(0, 0, 0, 1)",
+              }
+            }
+          >
+            There is no stock left
+            <div
+              className="react-tooltip-arrow styles-module_arrow__K0L3T"
+              style={Object {}}
+            />
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          The Wizard of Oz
+        </td>
+        <td>
+          Adventure
+        </td>
+        <td>
+          5.99
+          $
+        </td>
+        <td
+          className="isInStock"
+        >
+          <img
+            alt="Yes"
+            src="check.png"
+          />
+        </td>
+        <td
+          className="movie-rent"
+          onClick={[Function]}
+        >
+          Rent
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+`;

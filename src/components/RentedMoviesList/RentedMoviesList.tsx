@@ -57,7 +57,7 @@ const RentedMoviesList = () => {
               <th>Price</th>
               <th></th>
             </tr>
-            {currentUser.rentMovies.map((movie) => (
+            {currentUser.rentMovies?.map((movie) => (
               <tr key={movie.name}>
                 <td className="movie-name">{movie.name}</td>
                 <td>{movie.genre}</td>

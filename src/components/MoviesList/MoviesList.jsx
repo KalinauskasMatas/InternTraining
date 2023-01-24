@@ -71,7 +71,7 @@ const MoviesList = () => {
                   <img src={crossIcon} alt="No" />
                 )}
               </td>
-              {currentUser.rentMovies.find(
+              {currentUser.rentMovies?.find(
                 (movies) => movies.name === movie.name
               ) ? (
                 <>

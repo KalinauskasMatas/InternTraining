@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<header
+  className="header-name"
+  data-testid="header-title"
+>
+  Title
+</header>
+`;
+
+exports[`matches snapshot 2 1`] = `
+<header
+  className="header-name"
+  data-testid="header-title"
+>
+  Other title
+</header>
+`;

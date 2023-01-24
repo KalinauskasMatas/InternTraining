@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches login snapshot 1`] = `
+<article>
+  <form
+    className="auth-form"
+    onSubmit={[Function]}
+  >
+    <label
+      htmlFor="email"
+    >
+      Email
+    </label>
+    <input
+      id="email"
+      onChange={[Function]}
+      placeholder="email"
+      required={true}
+      type="email"
+    />
+    <label
+      htmlFor="password"
+    >
+      Password
+    </label>
+    <input
+      id="password"
+      onChange={[Function]}
+      placeholder="password"
+      required={true}
+      type="password"
+    />
+    <input
+      className="form-button"
+      type="submit"
+      value="Sign In"
+    />
+    <p
+      className="error"
+    />
+  </form>
+</article>
+`;
+
+exports[`matches register snapshot 1`] = `
+<article>
+  <button
+    className="form-button"
+    onClick={[Function]}
+  >
+    Register
+  </button>
+</article>
+`;
