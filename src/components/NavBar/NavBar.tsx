@@ -1,16 +1,15 @@
 import { Link } from "react-router-dom";
 
-import { clearUser } from "../../redux/features/currentUser/currentUserSlice";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
+import axiosFetch from "../../utils/axiosFetch";
 
 import "./NavBar.css";
 
 const NavBar = () => {
   const currentUser = useAppSelector((state) => state.currentUser);
-  const dispatch = useAppDispatch();
 
-  const handleLogout = () => {
-    dispatch(clearUser());
+  const handleLogout = async () => {
+    axiosFetch("/user/logout", "POST");
     window.location.reload();
   };
 

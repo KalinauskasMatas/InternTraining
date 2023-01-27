@@ -8,6 +8,7 @@ import { registerUser } from "../../redux/features/registeredUsers/registeredUse
 import { AuthFormInterface } from "../../interfaces";
 
 import "./AuthForm.css";
+import axiosFetch from "../../utils/axiosFetch";
 
 const AuthForm = (props: AuthFormInterface) => {
   const [showRegister, setShowRegister] = useState(false);
@@ -31,21 +32,22 @@ const AuthForm = (props: AuthFormInterface) => {
     setShowRegister(!showRegister);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormError("");
 
-    const matchUser = registeredUsers.find(
-      (user) =>
-        user.email === inputData.email && user.password === inputData.password
-    );
-
-    if (!matchUser) {
-      setFormError("Invalid username or password");
-      return;
+    try {
+      const response = await axiosFetch("/user/login", "POST", {
+        email: inputData.email,
+        password: inputData.password,
+      });
+      const { data: user } = response;
+      dispatch(setCurrUser(user));
+    } catch (error: any) {
+      if (error.response.status === 404) {
+        setFormError("Invalid username or password");
+      }
     }
-
-    dispatch(setCurrUser(matchUser));
   };
 
   const handleRegister = (e: React.FormEvent) => {

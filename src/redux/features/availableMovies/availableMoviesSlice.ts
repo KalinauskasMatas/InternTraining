@@ -6,15 +6,6 @@ import { RootState } from "../../store";
 
 import defaultData from "../../../defaultData.json";
 
-// async function getMovies() {
-//   try {
-//     const response = await axios.get("./defaultData.json");
-//     return response;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
 const initialState: MovieInterface[] =
   JSON.parse(localStorage.getItem("availableMovies") as string) || defaultData;
 

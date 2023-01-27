@@ -11,15 +11,15 @@ const currentUserSlice = createSlice({
   reducers: {
     setCurrUser: (state, action: PayloadAction<UserState>) => {
       Object.assign(state, action.payload);
-      localStorage.setItem("currUser", JSON.stringify(state));
+      // localStorage.setItem("currUser", JSON.stringify(state));
     },
     updateCurrUser: (state, action: PayloadAction<UserState>) => {
       Object.assign(state, action.payload);
 
-      localStorage.setItem("currUser", JSON.stringify(state));
+      // localStorage.setItem("currUser", JSON.stringify(state));
     },
     clearUser: (state) => {
-      localStorage.removeItem("currUser");
+      // localStorage.removeItem("currUser");
       state = { ...initialState };
     },
   },
