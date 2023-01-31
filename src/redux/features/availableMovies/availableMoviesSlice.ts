@@ -4,15 +4,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MovieInterface } from "../../../interfaces";
 import { RootState } from "../../store";
 
-import defaultData from "../../../defaultData.json";
-
-const initialState: MovieInterface[] =
-  JSON.parse(localStorage.getItem("availableMovies") as string) || defaultData;
+const initialState: MovieInterface[] = [];
 
 const availableMoviesSlice = createSlice({
   name: "availableMovies",
   initialState,
   reducers: {
+    updateMovieList: (state, action: PayloadAction<MovieInterface[]>) => {
+      state = action.payload;
+    },
     rentMovie: (state, action: PayloadAction<string>) => {
       const movieIndex = state.findIndex(
         (movie: MovieInterface) => movie.name === action.payload
@@ -34,7 +34,8 @@ const availableMoviesSlice = createSlice({
   },
 });
 
-export const { rentMovie, returnMovie } = availableMoviesSlice.actions;
+export const { updateMovieList, rentMovie, returnMovie } =
+  availableMoviesSlice.actions;
 
 export const selectAvailableMovies = (state: RootState) =>
   state.availableMovies;

@@ -9,43 +9,48 @@ import checkIcon from "./assets/check.png";
 import crossIcon from "./assets/cross.png";
 
 import "./MoviesList.css";
+import { useGetAvailableMoviesQuery } from "../../redux/features/api/apiSlice";
+import axiosFetch from "../../utils/axiosFetch";
 
 const MoviesList = () => {
   const currentUser = useAppSelector((state) => state.currentUser);
-  const availableMovies = useAppSelector((state) => state.availableMovies);
   const dispatch = useAppDispatch();
 
-  const rent = (movieName) => {
+  const { data: availableMovies } = useGetAvailableMoviesQuery();
+
+  const rent = async (rentMovie) => {
     const isMovieRented =
-      currentUser.rentMovies.filter((movie) => movie.name === movieName)
+      currentUser.rentMovies.filter((movie) => movie.id === rentMovie._id)
         .length > 0;
     if (isMovieRented) return;
 
-    const foundMovie = availableMovies.find(
-      (movie) => movie.name === movieName
-    );
+    const { data: updatedUser } = await axiosFetch("/movies/rent", "POST", {
+      movieId: rentMovie._id,
+    });
 
-    const newRentMovie = {
-      name: movieName,
-      genre: foundMovie.genre,
-      time: 12,
-      price: foundMovie.rentalPrice,
-    };
+    dispatch(updateCurrUser(updatedUser));
 
-    dispatch(rentMovie(movieName));
+    // const newRentMovie = {
+    //   name: movieName,
+    //   genre: foundMovie.genre,
+    //   time: 12,
+    //   price: foundMovie.rentalPrice,
+    // };
 
-    dispatch(
-      updateCurrUser({
-        rentMovies: [...currentUser.rentMovies, newRentMovie],
-      })
-    );
+    // dispatch(rentMovie(movieName));
 
-    dispatch(
-      updateUser({
-        ...currentUser,
-        rentMovies: [...currentUser.rentMovies, newRentMovie],
-      })
-    );
+    // dispatch(
+    //   updateCurrUser({
+    //     rentMovies: [...currentUser.rentMovies, newRentMovie],
+    //   })
+    // );
+
+    // dispatch(
+    //   updateUser({
+    //     ...currentUser,
+    //     rentMovies: [...currentUser.rentMovies, newRentMovie],
+    //   })
+    // );
   };
 
   return (
@@ -72,16 +77,16 @@ const MoviesList = () => {
                 )}
               </td>
               {currentUser.rentMovies?.find(
-                (movies) => movies.name === movie.name
+                (movies) => movies.id === movie._id
               ) ? (
                 <>
                   <td
                     className="movie-rent disabled-button"
-                    id={"rented" + movie.name}
+                    id={"rented" + movie._id}
                   >
                     Rent
                     <Tooltip
-                      anchorId={"rented" + movie.name}
+                      anchorId={"rented" + movie._id}
                       style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                       content="You have already rented this movie"
                     />
@@ -90,17 +95,17 @@ const MoviesList = () => {
               ) : movie.stock < 1 ? (
                 <td
                   className="movie-rent disabled-button"
-                  id={"no-stock" + movie.name}
+                  id={"no-stock" + movie._id}
                 >
                   Rent
                   <Tooltip
-                    anchorId={"no-stock" + movie.name}
+                    anchorId={"no-stock" + movie._id}
                     style={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
                     content="There is no stock left"
                   />
                 </td>
               ) : (
-                <td className="movie-rent" onClick={() => rent(movie.name)}>
+                <td className="movie-rent" onClick={() => rent(movie)}>
                   Rent
                 </td>
               )}
