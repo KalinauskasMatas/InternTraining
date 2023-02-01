@@ -7,12 +7,12 @@ import renderer from "react-test-renderer";
 
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import availableMoviesSlice from "../../../redux/features/availableMovies/availableMoviesSlice";
+// import availableMoviesSlice from "../../../redux/features/availableMovies/availableMoviesSlice";
 import currentUserSlice from "../../../redux/features/currentUser/currentUserSlice";
 
 const store = configureStore({
   reducer: {
-    availableMovies: availableMoviesSlice,
+    // availableMovies: availableMoviesSlice,
     currentUser: currentUserSlice,
   },
 });

@@ -1,47 +1,53 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
-import { returnMovie } from "../../redux/features/availableMovies/availableMoviesSlice";
+import { useGetAvailableMoviesQuery } from "../../redux/features/api/apiSlice";
 
-import { RentMovieInterface } from "../../interfaces";
 import "./RentedMoviesList.css";
+import axiosFetch from "../../utils/axiosFetch";
 
 const RentedMoviesList = () => {
   const currentUser = useAppSelector((state) => state.currentUser);
   const dispatch = useAppDispatch();
 
-  const handleChangeTime = (movie: RentMovieInterface, changeTime: string) => {
-    const movieIndex = currentUser.rentMovies.findIndex(
-      (movies) => movies.name === movie.name
-    );
+  const { data: availableMovies } = useGetAvailableMoviesQuery();
 
-    const newRentList = JSON.parse(JSON.stringify(currentUser.rentMovies));
+  const fullInfo = currentUser.rentMovies.map((movie) => {
+    const foundMovie = availableMovies?.find((mov) => movie.id === mov._id);
+    return {
+      id: movie.id,
+      name: foundMovie?.name,
+      time: movie.time,
+      genre: foundMovie?.genre,
+      price: foundMovie?.rentalPrice,
+    };
+  });
 
-    if (changeTime === "decrease") {
-      if (movie.time === 12) return;
-      newRentList[movieIndex].time -= 12;
-    } else {
-      if (movie.time === 168) return;
-      newRentList[movieIndex].time += 12;
-    }
+  const handleChangeTime = async (
+    id: string,
+    time: number,
+    changeTime: string
+  ) => {
+    if (
+      (changeTime === "decrease" && time === 12) ||
+      (changeTime === "increase" && time === 168)
+    )
+      return;
 
-    dispatch(updateCurrUser({ ...currentUser, rentMovies: [...newRentList] }));
-    dispatch(updateUser({ ...currentUser, rentMovies: [...newRentList] }));
+    const { data: updatedUser } = await axiosFetch("/movies/time", "PUT", {
+      movieId: id,
+      changeTime,
+    });
+
+    dispatch(updateCurrUser(updatedUser));
   };
 
-  const handleRemove = (movie: RentMovieInterface) => {
-    const movieIndex = currentUser.rentMovies.findIndex(
-      (movies) => movies.name === movie.name
-    );
-    const newMovieArray = JSON.parse(JSON.stringify(currentUser.rentMovies));
-    newMovieArray.splice(movieIndex, 1);
+  const handleRemove = async (id: string) => {
+    const { data: updatedUser } = await axiosFetch("/movies/return", "POST", {
+      movieId: id,
+    });
 
-    dispatch(returnMovie(movie.name));
-    dispatch(
-      updateCurrUser({ ...currentUser, rentMovies: [...newMovieArray] })
-    );
-    dispatch(updateUser({ ...currentUser, rentMovies: [...newMovieArray] }));
+    dispatch(updateCurrUser(updatedUser));
   };
 
   return (
@@ -57,22 +63,26 @@ const RentedMoviesList = () => {
               <th>Price</th>
               <th></th>
             </tr>
-            {currentUser.rentMovies?.map((movie) => (
-              <tr key={movie.name}>
+            {fullInfo.map((movie) => (
+              <tr key={movie.id}>
                 <td className="movie-name">{movie.name}</td>
                 <td>{movie.genre}</td>
                 <td>
                   <span className="time-settings">
                     <span
                       className="time-control"
-                      onClick={() => handleChangeTime(movie, "decrease")}
+                      onClick={() =>
+                        handleChangeTime(movie.id, movie.time, "decrease")
+                      }
                     >
                       &#60;
                     </span>
                     <span className="time-input">{movie.time}h</span>
                     <span
                       className="time-control"
-                      onClick={() => handleChangeTime(movie, "increase")}
+                      onClick={() =>
+                        handleChangeTime(movie.id, movie.time, "increase")
+                      }
                     >
                       &#62;
                     </span>
@@ -81,7 +91,7 @@ const RentedMoviesList = () => {
                 <td>{movie.price}$</td>
                 <td
                   className="remove-button"
-                  onClick={() => handleRemove(movie)}
+                  onClick={() => handleRemove(movie.id)}
                 >
                   Remove
                 </td>

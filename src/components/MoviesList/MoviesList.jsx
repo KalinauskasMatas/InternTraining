@@ -1,9 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Tooltip } from "react-tooltip";
 
-import { rentMovie } from "../../redux/features/availableMovies/availableMoviesSlice";
 import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import { updateUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 import checkIcon from "./assets/check.png";
 import crossIcon from "./assets/cross.png";
@@ -29,28 +27,6 @@ const MoviesList = () => {
     });
 
     dispatch(updateCurrUser(updatedUser));
-
-    // const newRentMovie = {
-    //   name: movieName,
-    //   genre: foundMovie.genre,
-    //   time: 12,
-    //   price: foundMovie.rentalPrice,
-    // };
-
-    // dispatch(rentMovie(movieName));
-
-    // dispatch(
-    //   updateCurrUser({
-    //     rentMovies: [...currentUser.rentMovies, newRentMovie],
-    //   })
-    // );
-
-    // dispatch(
-    //   updateUser({
-    //     ...currentUser,
-    //     rentMovies: [...currentUser.rentMovies, newRentMovie],
-    //   })
-    // );
   };
 
   return (

@@ -16,6 +16,7 @@ export interface UserState {
 }
 
 export interface MovieInterface {
+  _id: string;
   name: string;
   genre: string;
   rentalPrice: number;
@@ -23,6 +24,7 @@ export interface MovieInterface {
 }
 
 export interface RentMovieInterface {
+  id: string;
   name: string;
   genre: string;
   time: number;
