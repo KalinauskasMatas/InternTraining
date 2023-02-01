@@ -4,42 +4,66 @@ import "./ProfileViewer.css";
 import defaultIcon from "./assets/default-icon.png";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { updateCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import {
-  updateUser,
-  usersSetEmail,
-} from "../../redux/features/registeredUsers/registeredUsersSlice";
+import axiosFetch from "../../utils/axiosFetch";
 
 const ProfileViewer = (props: { profile: UserState }) => {
   const dispatch = useAppDispatch();
   const currProfile = useAppSelector((state) => state.currentUser);
   const profile = props.profile;
 
-  const handleChangeEmail = () => {
-    const newEmail = prompt("Enter new email");
-    if (!newEmail || !newEmail.includes(`@`)) {
-      alert("Enter correct email address");
-      return;
-    }
+  const handleChangeEmail = async () => {
+    try {
+      const newEmail = prompt("Enter new email");
+      let checkPassword = "";
+      if (!currProfile.isAdmin) {
+        checkPassword = prompt("Enter current password") || "";
+      }
 
-    if (profile.email === currProfile.email) {
-      dispatch(updateCurrUser({ ...profile, email: newEmail }));
-    }
+      if (!newEmail || !newEmail.includes(`@`)) {
+        alert("Enter correct email address");
+        return;
+      }
 
-    dispatch(usersSetEmail({ user: profile, newEmail }));
+      const { data: updatedUser } = await axiosFetch(
+        `/user/update/${currProfile._id}`,
+        "PUT",
+        {
+          password: checkPassword,
+          email: newEmail,
+        }
+      );
+      if (profile.email === currProfile.email) {
+        dispatch(updateCurrUser(updatedUser));
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleResetPassword = () => {
+  const handleResetPassword = async () => {
     const newPassword = prompt("Enter new password");
+    let password = "";
+    if (!currProfile.isAdmin) {
+      password = prompt("Enter current password") || "";
+    }
+
     if (!newPassword || newPassword.length < 8) {
       alert("Password must be at least 8 characters length");
       return;
     }
 
-    if (profile.email === currProfile.email) {
-      dispatch(updateCurrUser({ ...profile, password: newPassword }));
-    }
+    const { data: updatedUser } = await axiosFetch(
+      `/user/update/${currProfile._id}`,
+      "PUT",
+      {
+        password,
+        newPassword,
+      }
+    );
 
-    dispatch(updateUser({ ...profile, password: newPassword }));
+    if (profile.email === currProfile.email) {
+      dispatch(updateCurrUser(updatedUser));
+    }
   };
 
   return (

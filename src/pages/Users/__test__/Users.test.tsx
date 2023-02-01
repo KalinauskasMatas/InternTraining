@@ -7,7 +7,6 @@ import renderer from "react-test-renderer";
 
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import registeredUsersSlice from "../../../redux/features/registeredUsers/registeredUsersSlice";
 import currentUserSlice from "../../../redux/features/currentUser/currentUserSlice";
 
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +15,6 @@ afterEach(cleanup);
 
 const store = configureStore({
   reducer: {
-    registeredUsers: registeredUsersSlice,
     currentUser: currentUserSlice,
   },
 });

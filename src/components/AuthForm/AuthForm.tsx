@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch } from "../../redux/hooks";
 
 import { setCurrUser } from "../../redux/features/currentUser/currentUserSlice";
-import { registerUser } from "../../redux/features/registeredUsers/registeredUsersSlice";
 
 import { AuthFormInterface } from "../../interfaces";
 
@@ -23,7 +22,6 @@ const AuthForm = (props: AuthFormInterface) => {
     passwordRepeat: "",
   });
 
-  const registeredUsers = useAppSelector((state) => state.registeredUsers);
   const dispatch = useAppDispatch();
 
   const { isRegister } = props;
@@ -50,40 +48,37 @@ const AuthForm = (props: AuthFormInterface) => {
     }
   };
 
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormError("");
+  const handleRegister = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      setFormError("");
 
-    const { fname, surname, email, emailRepeat, password, passwordRepeat } =
-      inputData;
+      const { fname, surname, email, emailRepeat, password, passwordRepeat } =
+        inputData;
 
-    if (email !== emailRepeat) {
-      setFormError("The emails entered do not match");
-      return;
+      if (email !== emailRepeat) {
+        setFormError("The emails entered do not match");
+        return;
+      }
+
+      if (password !== passwordRepeat) {
+        setFormError("The passwords entered do not match");
+        return;
+      }
+
+      const { data: newUser } = await axiosFetch("/user/register", "POST", {
+        fname,
+        surname,
+        email,
+        password,
+      });
+
+      dispatch(setCurrUser(newUser));
+    } catch (error: any) {
+      if (error.response.status === 405) {
+        setFormError("This email is already registered");
+      }
     }
-
-    if (password !== passwordRepeat) {
-      setFormError("The passwords entered do not match");
-      return;
-    }
-
-    if (registeredUsers.find((user) => user.email === email)) {
-      setFormError("User with this email already exists");
-      return;
-    }
-
-    const newUser = {
-      fname,
-      surname,
-      email,
-      password,
-      isAdmin: false,
-      rentMovies: [],
-    };
-
-    dispatch(registerUser(newUser));
-
-    dispatch(setCurrUser(newUser));
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

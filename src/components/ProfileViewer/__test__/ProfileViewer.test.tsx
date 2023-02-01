@@ -12,6 +12,7 @@ import currentUserSlice from "../../../redux/features/currentUser/currentUserSli
 afterEach(cleanup);
 
 const testUser = {
+  _id: "123456",
   fname: "test",
   surname: "user",
   email: "test@user",

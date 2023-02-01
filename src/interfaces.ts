@@ -7,10 +7,11 @@ export interface AuthFormInterface {
 }
 
 export interface UserState {
+  _id: string;
   fname: string;
   surname: string;
   email: string;
-  password: string;
+  password?: string;
   isAdmin: boolean;
   rentMovies: RentMovieInterface[];
 }

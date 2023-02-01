@@ -22,6 +22,7 @@ const store = configureStore({
 afterEach(cleanup);
 
 const testUser = {
+  _id: "123456",
   fname: "test",
   surname: "user",
   email: "test@user",

@@ -1,19 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { availableMoviesApi } from "./features/api/apiSlice";
-// import availableMoviesSlice from "./features/availableMovies/availableMoviesSlice";
+import { availableMoviesApi, usersApi } from "./features/api/apiSlice";
 import currentUserReducer from "./features/currentUser/currentUserSlice";
-import registeredUsersSlice from "./features/registeredUsers/registeredUsersSlice";
 
 export const store = configureStore({
   reducer: {
     currentUser: currentUserReducer,
-    registeredUsers: registeredUsersSlice,
-    // availableMovies: availableMoviesSlice,
     [availableMoviesApi.reducerPath]: availableMoviesApi.reducer,
+    [usersApi.reducerPath]: usersApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(availableMoviesApi.middleware),
+    getDefaultMiddleware()
+      .concat(availableMoviesApi.middleware)
+      .concat(usersApi.middleware),
 });
 
 setupListeners(store.dispatch);

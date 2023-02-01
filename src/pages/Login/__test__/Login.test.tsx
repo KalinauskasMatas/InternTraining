@@ -7,14 +7,11 @@ import renderer from "react-test-renderer";
 
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
-import registeredUsersSlice from "../../../redux/features/registeredUsers/registeredUsersSlice";
 
 afterEach(cleanup);
 
 const store = configureStore({
-  reducer: {
-    registeredUsers: registeredUsersSlice,
-  },
+  reducer: {},
 });
 
 it("renders without crashing", () => {
